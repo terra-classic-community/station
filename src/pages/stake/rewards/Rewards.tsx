@@ -11,7 +11,7 @@ import { TooltipIcon } from "components/display"
 import StakedCard from "../components/StakedCard"
 import RewardsTooltip from "../RewardsTooltip"
 import styles from "../CardModal.module.scss"
-import { Coin } from "@terra-money/feather.js"
+import { Coin } from "@terra-rebels/feather.js"
 
 const Rewards = () => {
   const { t } = useTranslation()

@@ -14,8 +14,8 @@ import {
   createActionRuleSet,
   createLogMatcherForActions,
   getTxCanonicalMsgs,
-} from "@terra-money/log-finder-ruleset"
-import { TxInfo } from "@terra-money/feather.js"
+} from "@terra-rebels/log-finder-ruleset"
+import { TxInfo } from "@terra-rebels/feather.js"
 
 const HistoryItem = ({
   txhash,
@@ -48,7 +48,6 @@ const HistoryItem = ({
   const ruleset = createActionRuleSet(networkName)
   const logMatcher = createLogMatcherForActions(ruleset)
   const getCanonicalMsgs = (txInfo: TxInfo) => {
-    // @ts-expect-error
     const matchedMsg = getTxCanonicalMsgs(txInfo, logMatcher)
     return matchedMsg
       ? matchedMsg

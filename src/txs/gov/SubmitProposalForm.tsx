@@ -3,13 +3,13 @@ import { useTranslation } from "react-i18next"
 import { useFieldArray, useForm } from "react-hook-form"
 import AddIcon from "@mui/icons-material/Add"
 import RemoveIcon from "@mui/icons-material/Remove"
-import { AccAddress, Coins, MsgSubmitProposal } from "@terra-money/feather.js"
+import { AccAddress, Coins, MsgSubmitProposal } from "@terra-rebels/feather.js"
 import {
   TextProposal,
   CommunityPoolSpendProposal,
-} from "@terra-money/feather.js"
-import { ParameterChangeProposal, ParamChange } from "@terra-money/feather.js"
-import { ExecuteContractProposal } from "@terra-money/feather.js/dist/core/wasm/proposals"
+} from "@terra-rebels/feather.js"
+import { ParameterChangeProposal, ParamChange } from "@terra-rebels/feather.js"
+import { ExecuteContractProposal } from "@terra-rebels/feather.js/dist/core/wasm/proposals"
 import { isDenomTerraNative } from "@terra-money/terra-utils"
 import { readAmount, toAmount } from "@terra-money/terra-utils"
 import { SAMPLE_ADDRESS } from "config/constants"
@@ -399,8 +399,8 @@ const SubmitProposalForm = ({ chain }: { chain: string }) => {
               {networks[chain]?.prefix === "terra" && (
                 <FormHelp>
                   Upload proposal only after forum discussion on{" "}
-                  <ExternalLink href="https://agora.terra.money">
-                    agora.terra.money
+                  <ExternalLink href="https://agora.terrarebels.net">
+                    agora.terrarebels.net
                   </ExternalLink>
                 </FormHelp>
               )}

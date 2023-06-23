@@ -1,4 +1,4 @@
-import { ContractInfo } from "@terra-money/feather.js"
+import { ContractInfo } from "@terra-rebels/feather.js"
 import { FinderLink } from "components/general"
 import { Card } from "components/layout"
 import ContractItemActions from "./ContractItemActions"

@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect } from "react"
-import { WalletStatus } from "@terra-money/wallet-types"
-import { useWallet } from "@terra-money/use-wallet"
+import { WalletStatus } from "@terra-rebels/wallet-types"
+import { useWallet } from "@terra-rebels/use-wallet"
 import { isWallet, useAuth } from "auth"
 import Online from "./containers/Online"
 import NetworkLoading from "./NetworkLoading"

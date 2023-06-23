@@ -4,10 +4,10 @@ import { useInterchainLCDClient } from "./lcdClient"
 import {
   AllianceAsset,
   AllianceDelegationResponse,
-} from "@terra-money/feather.js/dist/client/lcd/api/AllianceAPI"
+} from "@terra-rebels/feather.js/dist/client/lcd/api/AllianceAPI"
 import { useNetwork } from "data/wallet"
 import { useInterchainAddresses } from "auth/hooks/useAddress"
-import { Coin, ValAddress } from "@terra-money/feather.js"
+import { Coin, ValAddress } from "@terra-rebels/feather.js"
 import { StakeAction } from "txs/stake/StakeForm"
 
 export interface AllianceDetails extends AllianceAsset {

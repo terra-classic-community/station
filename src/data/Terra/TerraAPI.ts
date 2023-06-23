@@ -2,10 +2,10 @@ import { useMemo } from "react"
 import { useQuery } from "react-query"
 import axios, { AxiosError } from "axios"
 import BigNumber from "bignumber.js"
-import { ValAddress, Validator } from "@terra-money/feather.js"
+import { ValAddress, Validator } from "@terra-rebels/feather.js"
 import { TerraValidator } from "types/validator"
 import { TerraProposalItem } from "types/proposal"
-import { useNetwork, useNetworkName } from "data/wallet"
+import { useNetwork } from "data/wallet"
 import { queryKey, RefetchOptions } from "../query"
 import { useValidators } from "data/queries/staking"
 
@@ -26,10 +26,7 @@ export enum AggregateWallets {
 }
 
 export const useTerraAPIURL = () => {
-  const network = useNetworkName()
-  return network !== "mainnet"
-    ? "https://pisco-api.terra.dev"
-    : "https://phoenix-api.terra.dev"
+  return "https://api.terrarebels.net"
 }
 
 export const useIsTerraAPIAvailable = () => {

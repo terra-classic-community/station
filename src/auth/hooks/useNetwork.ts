@@ -1,7 +1,7 @@
 import { atom, useRecoilState, useRecoilValue } from "recoil"
 import { useNetworks } from "app/InitNetworks"
 import { getStoredNetwork, storeNetwork } from "../scripts/network"
-import { useWallet, WalletStatus } from "@terra-money/wallet-provider"
+import { useWallet, WalletStatus } from "@terra-rebels/wallet-provider"
 import { walletState } from "./useAuth"
 import is from "../scripts/is"
 import { useCustomLCDs } from "utils/localStorage"
@@ -52,15 +52,10 @@ export const useNetwork = (): Record<ChainID, InterchainNetwork> => {
 
   // check connected wallet
   if (connectedWallet.status === WalletStatus.WALLET_CONNECTED) {
-    if (network !== "mainnet" && "phoenix-1" in connectedWallet.network) {
+    if (network !== "mainnet" && "columbus-5" in connectedWallet.network) {
       setNetwork("mainnet")
-    } else if (network !== "testnet" && "pisco-1" in connectedWallet.network) {
+    } else if (network !== "testnet" && "rebel-2" in connectedWallet.network) {
       setNetwork("testnet")
-    } else if (
-      network !== "classic" &&
-      "columbus-5" in connectedWallet.network
-    ) {
-      setNetwork("classic")
     } else if (
       network !== "localterra" &&
       "localterra" in connectedWallet.network
@@ -111,9 +106,9 @@ export const useChainID = () => {
   const network = useRecoilValue(networkState)
   switch (network) {
     case "mainnet":
-      return "phoenix-1"
+      return "columbus-5"
     case "testnet":
-      return "pisco-1"
+      return "rebel-2"
     case "classic":
       return "columbus-5"
     case "localterra":

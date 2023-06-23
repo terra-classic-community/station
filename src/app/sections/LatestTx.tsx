@@ -7,8 +7,8 @@ import DoneAllIcon from "@mui/icons-material/DoneAll"
 import WarningAmberIcon from "@mui/icons-material/WarningAmber"
 import CloseIcon from "@mui/icons-material/Close"
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen"
-import { isTxError, TxInfo } from "@terra-money/feather.js"
-import * as ruleset from "@terra-money/log-finder-ruleset"
+import { isTxError, TxInfo } from "@terra-rebels/feather.js"
+import * as ruleset from "@terra-rebels/log-finder-ruleset"
 import useInterval from "utils/hooks/useInterval"
 import { isBroadcastingState, latestTxState } from "data/queries/tx"
 import { useTxInfo } from "data/queries/tx"
@@ -104,7 +104,6 @@ const TxIndicator = ({ txhash }: { txhash: string }) => {
   const ruleset = createActionRuleSet(networkName)
   const logMatcher = createLogMatcherForActions(ruleset)
   const getCanonicalMsgs = (txInfo: TxInfo) => {
-    // @ts-expect-error
     const matchedMsg = getTxCanonicalMsgs(txInfo, logMatcher)
     return matchedMsg
       ? matchedMsg

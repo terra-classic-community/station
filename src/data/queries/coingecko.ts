@@ -53,10 +53,10 @@ const STAKED_TOKENS: Record<string, string> = {
 
 export const useExchangeRates = () => {
   const currency = useCurrency()
-  const isClassic = useNetworkName() === "classic"
+  const network = useNetworkName()
 
   return useQuery(
-    [queryKey.coingecko.exchangeRates, currency, isClassic],
+    [queryKey.coingecko.exchangeRates, currency, network],
     async () => {
       const [{ data: TFM_IDs }, { data: prices }, fiatPrice] =
         await Promise.all([
@@ -81,8 +81,8 @@ export const useExchangeRates = () => {
 
       const priceObject = Object.fromEntries(
         Object.entries(prices).map(([denom, { usd, change24h }]) => {
-          // if token is LUNA and network is classic, use LUNC price
-          if (denom === "uluna" && isClassic) {
+          // if token is LUNA and network is mainnet, use LUNC price
+          if (denom === "uluna" && network === "mainnet") {
             return [
               denom,
               {

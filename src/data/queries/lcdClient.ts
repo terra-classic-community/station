@@ -1,6 +1,6 @@
 import { useMemo } from "react"
-import { LCDClient as InterchainLCDClient } from "@terra-money/feather.js"
-import { LCDClient } from "@terra-money/terra.js"
+import { LCDClient as InterchainLCDClient } from "@terra-rebels/feather.js"
+import { LCDClient } from "@terra-rebels/terra.js"
 import { useChainID, useNetwork } from "data/wallet"
 
 export const useInterchainLCDClient = () => {
@@ -16,7 +16,11 @@ export const useLCDClient = () => {
   const chainID = useChainID()
 
   const lcdClient = useMemo(
-    () => new LCDClient({ ...network[chainID], URL: network[chainID].lcd }),
+    () =>
+      new LCDClient({
+        ...network[chainID],
+        URL: "https://lcd.terrarebels.net",
+      }),
     [network, chainID]
   )
 

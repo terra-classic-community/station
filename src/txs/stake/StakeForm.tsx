@@ -8,10 +8,10 @@ import {
   MsgAllianceRedelegate,
   MsgAllianceUndelegate,
   ValAddress,
-} from "@terra-money/feather.js"
-import { Delegation, Validator } from "@terra-money/feather.js"
-import { MsgDelegate, MsgUndelegate } from "@terra-money/feather.js"
-import { MsgBeginRedelegate } from "@terra-money/feather.js"
+} from "@terra-rebels/feather.js"
+import { Delegation, Validator } from "@terra-rebels/feather.js"
+import { MsgDelegate, MsgUndelegate } from "@terra-rebels/feather.js"
+import { MsgBeginRedelegate } from "@terra-rebels/feather.js"
 import { toAmount } from "@terra-money/terra-utils"
 import { getAmount } from "utils/coin"
 import { queryKey } from "data/query"
@@ -31,7 +31,7 @@ import validate from "../validate"
 import Tx from "txs/Tx"
 import { useInterchainAddresses } from "auth/hooks/useAddress"
 import { useNativeDenoms } from "data/token"
-import { AllianceDelegationResponse } from "@terra-money/feather.js/dist/client/lcd/api/AllianceAPI"
+import { AllianceDelegationResponse } from "@terra-rebels/feather.js/dist/client/lcd/api/AllianceAPI"
 import styles from "./StakeTx.module.scss"
 
 interface TxValues {

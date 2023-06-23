@@ -1,6 +1,6 @@
 import { HTMLAttributes, useState } from "react"
 import classNames from "classnames/bind"
-import { AccAddress } from "@terra-money/feather.js"
+import { AccAddress } from "@terra-rebels/feather.js"
 import { isDenomIBC } from "@terra-money/terra-utils"
 import { getIcon } from "data/token"
 import styles from "./TokenIcon.module.scss"

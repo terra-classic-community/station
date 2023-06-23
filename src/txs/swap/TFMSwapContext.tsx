@@ -1,7 +1,7 @@
 import { PropsWithChildren, useMemo } from "react"
 import { zipObj } from "ramda"
 import { isDenomIBC } from "@terra-money/terra-utils"
-import { AccAddress } from "@terra-money/feather.js"
+import { AccAddress } from "@terra-rebels/feather.js"
 import { getAmount } from "utils/coin"
 import createContext from "utils/createContext"
 import { combineState } from "data/query"

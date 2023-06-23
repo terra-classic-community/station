@@ -1,4 +1,4 @@
-import { AccAddress } from "@terra-money/feather.js"
+import { AccAddress } from "@terra-rebels/feather.js"
 import { useCustomTokensNative } from "data/settings/CustomTokens"
 import { useCustomTokensCW20 } from "data/settings/CustomTokens"
 import { useCW20Whitelist } from "data/Terra/TerraAssets"

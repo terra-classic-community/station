@@ -11,7 +11,7 @@ import useAuth from "../../hooks/useAuth"
 import is from "../../scripts/is"
 import SelectPreconfigured from "./SelectPreconfigured"
 import styles from "./SwitchWallet.module.scss"
-import { useWallet } from "@terra-money/use-wallet"
+import { useWallet } from "@terra-rebels/use-wallet"
 
 const SwitchWallet = () => {
   const { disconnect } = useWallet()

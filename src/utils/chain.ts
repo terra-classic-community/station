@@ -1,6 +1,6 @@
 import { useExchangeRates } from "data/queries/coingecko"
 import { useDisplayChains } from "./localStorage/hooks"
-import { AccAddress } from "@terra-money/feather.js"
+import { AccAddress } from "@terra-rebels/feather.js"
 import { useBankBalance } from "data/queries/bank"
 import { useNativeDenoms } from "data/token"
 import { useNetworkName } from "data/wallet"

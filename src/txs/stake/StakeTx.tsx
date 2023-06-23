@@ -8,7 +8,7 @@ import { Auto, Page, Tabs, Card } from "components/layout"
 import ValidatorCompact from "pages/stake/ValidatorCompact"
 import StakeForm, { StakeAction } from "./StakeForm"
 import { useNetwork } from "data/wallet"
-import { ValAddress } from "@terra-money/feather.js"
+import { ValAddress } from "@terra-rebels/feather.js"
 import { useMemo } from "react"
 import styles from "./StakeTx.module.scss"
 import {

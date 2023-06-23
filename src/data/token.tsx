@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import { isDenomIBC } from "@terra-money/terra-utils"
 import { readDenom, truncate } from "@terra-money/terra-utils"
-import { AccAddress } from "@terra-money/feather.js"
+import { AccAddress } from "@terra-rebels/feather.js"
 import { ASSETS } from "config/constants"
 import { useTokenInfoCW20 } from "./queries/wasm"
 import { useCustomTokensCW20 } from "./settings/CustomTokens"
@@ -178,10 +178,10 @@ export const useNativeDenoms = () => {
         name: fixedDenom,
         icon:
           tokenType === "ibc"
-            ? "https://assets.terra.money/icon/svg/IBC.svg"
+            ? "https://assets.terrarebels.net/icon/svg/IBC.svg"
             : tokenType === "factory" || tokenType === "gamm"
             ? factoryIcon
-            : "https://assets.terra.money/icon/svg/Terra.svg",
+            : "https://assets.terrarebels.net/icon/svg/Terra.svg",
         decimals,
         isNonWhitelisted: true,
       }

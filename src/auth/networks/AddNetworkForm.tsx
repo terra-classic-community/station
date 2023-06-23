@@ -11,8 +11,8 @@ const AddNetwork = () => {
   //const { mainnet } = useNetworks()
   const mainnet = {
     name: "mainnet",
-    chainID: "phoenix-1",
-    lcd: "https://phoenix-lcd.terra.dev",
+    chainID: "columbus-5",
+    lcd: "https://lcd.terrarebels.net",
   }
   const [, setNetwork] = useNetworkState()
   const { add, validateName } = useCustomNetworks()

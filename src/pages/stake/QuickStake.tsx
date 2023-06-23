@@ -20,7 +20,7 @@ import {
 } from "data/queries/staking"
 import { combineState } from "data/query"
 import { Tooltip, TooltipIcon } from "components/display"
-import { Delegation } from "@terra-money/feather.js"
+import { Delegation } from "@terra-rebels/feather.js"
 import TokenSelector, {
   TokenInterface,
 } from "components/form/Selectors/TokenSelector/TokenSelector"

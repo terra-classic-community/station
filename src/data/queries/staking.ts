@@ -11,8 +11,8 @@ import {
   StakingParams,
   ValAddress,
   Validator,
-} from "@terra-money/feather.js"
-import { Delegation, UnbondingDelegation } from "@terra-money/feather.js"
+} from "@terra-rebels/feather.js"
+import { Delegation, UnbondingDelegation } from "@terra-rebels/feather.js"
 import { has } from "utils/num"
 import { StakeAction } from "txs/stake/StakeForm"
 import { queryKey, Pagination, RefetchOptions, combineState } from "../query"
@@ -24,7 +24,7 @@ import { useNativeDenoms } from "data/token"
 import shuffle from "utils/shuffle"
 import { getIsBonded } from "pages/stake/ValidatorsList"
 import { useNetwork } from "data/wallet"
-import { AllianceDelegationResponse } from "@terra-money/feather.js/dist/client/lcd/api/AllianceAPI"
+import { AllianceDelegationResponse } from "@terra-rebels/feather.js/dist/client/lcd/api/AllianceAPI"
 import {
   AllianceDelegation,
   useInterchainAllianceDelegations,

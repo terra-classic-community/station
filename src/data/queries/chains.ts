@@ -1,4 +1,4 @@
-import { AccAddress } from "@terra-money/feather.js"
+import { AccAddress } from "@terra-rebels/feather.js"
 import { useNetwork } from "data/wallet"
 import createContext from "utils/createContext"
 import { DefaultDisplayChains } from "utils/localStorage"
