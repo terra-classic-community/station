@@ -57,7 +57,7 @@ export const useInitialBankBalance = () => {
       return {
         queryKey: [queryKey.bank.balances, address, chainID],
         queryFn: async () => {
-          const bal = ["phoenix-1", "pisco-1"].includes(chainID)
+          const bal = ["columbus-5", "rebel-2"].includes(chainID)
             ? await lcd.bank.spendableBalances(address)
             : await lcd.bank.balance(address)
 

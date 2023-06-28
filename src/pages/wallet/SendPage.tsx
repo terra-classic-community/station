@@ -305,7 +305,7 @@ const SendPage = () => {
   const coins = [{ input, denom: "" }] as CoinInput[]
   const estimationTxValues = useMemo(() => {
     return {
-      address: addresses?.[chain ?? "phoenix-1"],
+      address: addresses?.[chain ?? "columbus-5"],
       input: toInput(1, decimals),
     }
   }, [addresses, decimals, chain])

@@ -11,7 +11,7 @@ const CommunityPool = () => {
   const { t } = useTranslation()
   const title = t("Community pool")
 
-  const { data, ...state } = useCommunityPool("phoenix-1")
+  const { data, ...state } = useCommunityPool("columbus-5")
   const calcValue = useMemoizedCalcValue()
 
   const render = () => {

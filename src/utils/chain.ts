@@ -9,7 +9,7 @@ type ChainId = string
 type ChainPrefix = string
 
 export const isTerraChain = (id: ChainId | ChainPrefix) =>
-  id?.startsWith("phoenix-") || id?.startsWith("pisco-") || id === "terra"
+  id?.startsWith("columbus-") || id?.startsWith("rebel-") || id === "terra"
 
 export const isOsmosisChain = (id: ChainId | ChainPrefix) =>
   id?.startsWith("osmosis-") || id === "osmo"
@@ -55,7 +55,7 @@ export const useSortedDisplayChains = () => {
 }
 
 export const useTerraChainName = () =>
-  useNetworkName() === "mainnet" ? "phoenix-1" : "pisco-1"
+  useNetworkName() === "mainnet" ? "columbus-5" : "rebel-2"
 
 export const isNativeToken = (denom: string) =>
   !denom.startsWith("ibc/") &&

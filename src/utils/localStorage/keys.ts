@@ -39,14 +39,14 @@ export const DefaultCustomTokensItem = (chainID: string) => ({
 })
 
 export const DefaultDisplayChains = {
-  mainnet: ["phoenix-1", "osmosis-1"],
-  testnet: ["pisco-1"],
-  classic: ["columbus-5"],
+  mainnet: ["columbus-5", "osmosis-1"],
+  testnet: ["rebel-2"],
+  // classic: ["columbus-5"],
   localterra: ["localterra"],
 }
 
 export const DefaultCustomTokens = {
-  mainnet: DefaultCustomTokensItem("phoenix-1"),
+  mainnet: DefaultCustomTokensItem("columbus-5"),
 }
 
 export const DefaultSettings = {

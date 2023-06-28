@@ -84,7 +84,7 @@ const PostMultisigTxForm = ({ publicKey, sequence, ...props }: Props) => {
       // broadcast
       const result = await lcd.tx.broadcastSync(tx, chainID)
       if (isTxError(result)) throw new Error(result.raw_log)
-      setLatestTx({ txhash: result.txhash, chainID: "phoenix-1" })
+      setLatestTx({ txhash: result.txhash, chainID: "columbus-5" })
     } catch (error) {
       setError(error as Error)
     }
