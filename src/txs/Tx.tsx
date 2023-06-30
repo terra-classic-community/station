@@ -33,7 +33,11 @@ import { getLocalSetting, SettingKey } from "utils/localStorage"
 import { combineState, queryKey, RefetchOptions } from "data/query"
 import { useNetwork } from "data/wallet"
 import { isBroadcastingState, latestTxState } from "data/queries/tx"
-import { CoinBalance, useIsWalletEmpty } from "data/queries/bank"
+import {
+  CoinBalance,
+  useBankBalance,
+  useIsWalletEmpty,
+} from "data/queries/bank"
 
 import { Pre } from "components/general"
 import { Flex, Grid } from "components/layout"
@@ -99,7 +103,9 @@ function Tx<TxValues>(props: Props<TxValues>) {
   const { onPost, redirectAfterTx, queryKeys, onSuccess } = props
 
   const [isMax, setIsMax] = useState(false)
-  const [gasDenom, setGasDenom] = useState<string>("")
+  const [gasDenom, setGasDenom] = useState<string>(
+    getInitialGasDenom(useBankBalance())
+  )
 
   /* context */
   const { t } = useTranslation()

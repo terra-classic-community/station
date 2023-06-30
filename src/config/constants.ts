@@ -14,7 +14,7 @@ export const STATION = "https://station.terrarebels.net"
 export const FINDER = "https://finder.terrarebels.net"
 export const MINTSCAN = "https://www.mintscan.io"
 export const EXTENSION =
-  "https://chrome.google.com/webstore/detail/aiifbnbfobpmeekipheeijimdpnlpgpp"
+  "https://chrome.google.com/webstore/detail/akckefnapafjbpphkefbpkpcamkoaoai"
 export const DOCUMENTATION =
   "https://docs.terrarebels.net/learn/station/download/station-desktop.html"
 export const SETUP = "https://setup-station.terrarebels.net/"
