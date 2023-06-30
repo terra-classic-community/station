@@ -1,11 +1,13 @@
 import { useTranslation } from "react-i18next"
-import { useNetworkName } from "data/wallet"
-import { Card, ChainFilter, Page } from "components/layout"
-import { Wrong } from "components/feedback"
+import { useChainID, useNetworkName } from "data/wallet"
+import { ChainFilter, Page } from "components/layout"
 import TFMSwapContext from "./TFMSwapContext"
 import TFMSwapForm from "./TFMSwapForm"
 import TFMPoweredBy from "./TFMPoweredBy"
-import { ExternalLink } from "components/general"
+import SwapContext from "./SwapContext"
+import SingleSwapContext from "./SingleSwapContext"
+import SwapForm from "./SwapForm"
+import TxContext from "../TxContext"
 
 // The sequence below is required before rendering the Swap form:
 // 1. `SwapContext` - Complete the network request related to swap.
@@ -14,25 +16,18 @@ import { ExternalLink } from "components/general"
 const SwapTx = () => {
   const { t } = useTranslation()
   const networkName = useNetworkName()
+  const chainID = useChainID()
 
-  if (networkName !== "mainnet") {
+  if (networkName === "mainnet" && chainID === "columbus-5") {
     return (
       <Page title={t("Swap")} small>
-        <Card>
-          <Wrong>
-            {networkName === "classic" ? (
-              <p>
-                Swaps are not supported for classic, please use the{" "}
-                <ExternalLink href="https://tfm.com/terraclassic/trade/swap">
-                  TFM webapp
-                </ExternalLink>{" "}
-                instead.
-              </p>
-            ) : (
-              t("Not supported")
-            )}
-          </Wrong>
-        </Card>
+        <TxContext>
+          <SwapContext>
+            <SingleSwapContext>
+              <SwapForm chainID={"columbus-5"} />
+            </SingleSwapContext>
+          </SwapContext>
+        </TxContext>
       </Page>
     )
   }

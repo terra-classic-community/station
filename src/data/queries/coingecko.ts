@@ -5,13 +5,19 @@ import { CURRENCY_KEY, STATION_ASSETS, ASSETS } from "config/constants"
 import axios from "axios"
 import { useCurrency } from "data/settings/Currency"
 import { useNetworkName } from "data/wallet"
+import { useLCDClient } from "./lcdClient"
+import { sortDenoms } from "../../utils/coin"
 
 // TODO: remove/move somewhere else
 export const useActiveDenoms = () => {
+  const lcd = useLCDClient()
+
   return useQuery(
     [queryKey.coingecko.activeDenoms],
     async () => {
-      return ["uluna"]
+      const activeDenoms = await lcd.oracle.activeDenoms()
+      return sortDenoms(["uluna", ...activeDenoms])
+      // return ['uluna', 'uusd', 'uaud', 'ucad', 'uchf', 'ucny', 'udkk', 'ueur', 'ugbp', 'uhkd', 'uidr', 'uinr', 'ujpy', 'ukrw', 'umnt', 'umyr', 'unok', 'uphp', 'usdr', 'usek', 'usgd', 'uthb', 'utwd']
     },
     { ...RefetchOptions.INFINITY }
   )

@@ -1,35 +1,43 @@
-import { Fragment, ReactNode } from "react"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import {
+  Fragment,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { QueryKey, useQuery } from "react-query"
 import { useNavigate } from "react-router-dom"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import classNames from "classnames"
 import BigNumber from "bignumber.js"
-import { isNil } from "ramda"
+import { head, isNil } from "ramda"
 
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet"
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline"
 import { isDenom } from "@terra-money/terra-utils"
-import { Coin, Coins, CreateTxOptions } from "@terra-rebels/feather.js"
-import { Fee } from "@terra-rebels/feather.js"
-import { ConnectType, UserDenied } from "@terra-rebels/wallet-types"
-import { CreateTxFailed, TxFailed } from "@terra-rebels/wallet-types"
-import { useWallet, useConnectedWallet } from "@terra-rebels/use-wallet"
+import { Coin, Coins, CreateTxOptions, Fee } from "@terra-rebels/feather.js"
+import {
+  ConnectType,
+  CreateTxFailed,
+  TxFailed,
+  UserDenied,
+} from "@terra-rebels/wallet-types"
+import { useConnectedWallet, useWallet } from "@terra-rebels/use-wallet"
 
 import { Contents } from "types/components"
 import { has } from "utils/num"
 import { getErrorMessage } from "utils/error"
 import { getLocalSetting, SettingKey } from "utils/localStorage"
-import { combineState, RefetchOptions } from "data/query"
-import { queryKey } from "data/query"
+import { combineState, queryKey, RefetchOptions } from "data/query"
 import { useNetwork } from "data/wallet"
 import { isBroadcastingState, latestTxState } from "data/queries/tx"
-import { useIsWalletEmpty } from "data/queries/bank"
+import { CoinBalance, useIsWalletEmpty } from "data/queries/bank"
 
 import { Pre } from "components/general"
 import { Flex, Grid } from "components/layout"
-import { FormError, Submit, Select, Input, FormItem } from "components/form"
+import { FormError, FormItem, Input, Select, Submit } from "components/form"
 import { Modal } from "components/feedback"
 import { Details } from "components/display"
 import { Read } from "components/token"
@@ -38,12 +46,13 @@ import useToPostMultisigTx from "pages/multisig/utils/useToPostMultisigTx"
 import { isWallet, useAuth } from "auth"
 import { PasswordError } from "auth/scripts/keystore"
 
-import { toInput, CoinInput, calcTaxes } from "./utils"
+import { calcTaxes, CoinInput, toInput } from "./utils"
 import styles from "./Tx.module.scss"
 import { useInterchainLCDClient } from "data/queries/lcdClient"
 import { useInterchainAddresses } from "auth/hooks/useAddress"
 import { getShouldTax, useTaxCap, useTaxRate } from "data/queries/treasury"
 import { useNativeDenoms } from "data/token"
+import { getAmount, sortByDenom } from "../utils/coin"
 
 interface Props<TxValues> {
   /* Only when the token is paid out of the balance held */
@@ -507,6 +516,12 @@ function Tx<TxValues>(props: Props<TxValues>) {
 }
 
 export default Tx
+
+export const getInitialGasDenom = (bankBalance: CoinBalance[]) => {
+  const denom = head(sortByDenom(bankBalance))?.denom ?? "uusd"
+  const uusd = getAmount(bankBalance, "uusd")
+  return has(uusd) ? "uusd" : denom
+}
 
 /* utils */
 export const calcMinimumTaxAmount = (

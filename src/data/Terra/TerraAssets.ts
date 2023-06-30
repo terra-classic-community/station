@@ -6,7 +6,7 @@ import { AccAddress } from "@terra-rebels/feather.js"
 import { ASSETS } from "config/constants"
 import shuffle from "utils/shuffle"
 import { queryKey, RefetchOptions } from "../query"
-import { useNetworkName } from "../wallet"
+// import { useNetworkName } from "../wallet"
 
 const config = { baseURL: ASSETS }
 
@@ -26,7 +26,9 @@ export const useTerraAssetsByNetwork = <T>(
   disabled = false,
   callback?: (data: T) => T
 ) => {
-  const networkName = useNetworkName()
+  // FIXME: hard-coded network name for now
+  // const networkName = useNetworkName()
+  const networkName = "classic"
 
   return useQuery<T | undefined, AxiosError>(
     [queryKey.TerraAssets, path, networkName],
