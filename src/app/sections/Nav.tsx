@@ -23,8 +23,8 @@ const Nav = () => {
     <nav>
       <header className={styles.header}>
         <NavLink to="/" className={classNames(styles.item, styles.logo)}>
-          <img src={icon} alt="Station" />{" "}
-          <strong className={styles.title}>Classic</strong> Station
+          <img src={icon} alt="Terra Classic Station" />{" "}
+          <strong className={styles.title}>Terra Classic Station</strong>
         </NavLink>
         {isOpen && (
           <button className={styles.toggle} onClick={close}>

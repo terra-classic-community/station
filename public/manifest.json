@@ -1,13 +1,27 @@
 {
-  "short_name": "Rebel Station",
-  "name": "Rebel Station",
+  "short_name": "Terra Classic Station",
+  "name": "Terra Classic Station",
   "icons": [
     {
-      "src": "apple-touch-icon.png",
+      "src": "logo192.png",
       "type": "image/png",
-      "sizes": "128x128"
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "fullscreen"
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "description": "Terra Classic Station is a web application to interact with Terra Core and other supported chains.",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "browser"
+  ]
 }

@@ -4,7 +4,7 @@
   display: grid;
 
   @include desktop {
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 280px 1fr;
     grid-template-rows: auto var(--header-height) 1fr;
     grid-template-areas:
       "banner banner"

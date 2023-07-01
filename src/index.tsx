@@ -6,6 +6,7 @@ import { RecoilRoot } from "recoil"
 import { getChainOptions } from "@terra-rebels/wallet-controller"
 import { WalletProvider } from "@terra-rebels/wallet-provider"
 import "tippy.js/dist/tippy.css"
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
 import { initSentry } from "utils/sentry/setupSentry"
 
 import "config/lang"
@@ -54,3 +55,5 @@ getChainOptions().then((chainOptions) =>
     document.getElementById("station")
   )
 )
+
+serviceWorkerRegistration.register()

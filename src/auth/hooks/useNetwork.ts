@@ -29,7 +29,7 @@ export const useNetworkOptions = () => {
   return [
     { value: "mainnet", label: "Mainnets" },
     { value: "testnet", label: "Testnets" },
-    { value: "classic", label: "Terra Classic" },
+    // { value: "classic", label: "Terra Classic" },
     { value: "localterra", label: "LocalTerra" },
   ]
 }
