@@ -22,10 +22,10 @@ const Nav = () => {
   return (
     <nav>
       <header className={styles.header}>
-        <div className={classNames(styles.item, styles.logo)}>
+        <NavLink to="/" className={classNames(styles.item, styles.logo)}>
           <img src={icon} alt="Station" />{" "}
           <strong className={styles.title}>Classic</strong> Station
-        </div>
+        </NavLink>
         {isOpen && (
           <button className={styles.toggle} onClick={close}>
             <CloseIcon />

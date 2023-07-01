@@ -9,6 +9,7 @@ import { ReactComponent as GovernanceIcon } from "styles/images/menu/Governance.
 import { ReactComponent as ContractIcon } from "styles/images/menu/Contract.svg"
 
 /* menu */
+import Dashboard from "../pages/dashboard/Dashboard"
 import History from "pages/history/History"
 import Stake from "pages/stake/Stake"
 import Governance from "pages/gov/Governance"
@@ -49,6 +50,7 @@ import Labs from "pages/labs/Labs"
 
 /* 404 */
 import NotFound from "pages/NotFound"
+
 import DonateAllVestingTokensTx from "txs/stake/DonateAllVestingTokensTx"
 
 const ICON_SIZE = { width: 20, height: 20 }
@@ -59,7 +61,7 @@ export const useNav = () => {
 
   const menu = [
     {
-      path: "/",
+      path: "/swap",
       element: <SwapTx />,
       title: t("Swap"),
       icon: <SwapIcon {...ICON_SIZE} />,
@@ -95,6 +97,8 @@ export const useNav = () => {
   ]
 
   const routes = [
+    { path: "/", element: <Dashboard /> },
+
     /* pages */
     ...menu,
     { path: "/validator/:address", element: <ValidatorDetails /> },
