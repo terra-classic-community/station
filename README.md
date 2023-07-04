@@ -2,7 +2,7 @@
 
 ![Banner](Banner.png)
 
-**Station** is a web application to interact with [Terra Core](https://github.com/terra-money/core) and other supported chains.
+**Station** is a web application to interact with [Terra Classic Core](https://github.com/classic-terra/core) and other supported chains.
 
 Station allows users to:
 
@@ -22,7 +22,7 @@ This project was bootstrapped with [Create React App](https://create-react-app.d
 Run Station with the following commands:
 
 ```
-git clone https://github.com/terra-money/station.git
+git clone https://github.com/terra-classic-community/station.git
 cd station
 npm i
 npm run start
