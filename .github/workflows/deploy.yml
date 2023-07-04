@@ -1,4 +1,4 @@
-name: Deploy Rebel Station
+name: Deploy Terra Classic Station
 on:
   push:
     branches:
