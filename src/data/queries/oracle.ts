@@ -31,9 +31,6 @@ export const useMemoizedPrices = (currency: Denom) => {
     if (!exchangeRates) return
     const base = toPrice(getAmount(exchangeRates, currency, "1"))
 
-    console.log(base)
-    console.log(currency)
-
     return {
       uluna: base,
       ...sortCoins(exchangeRates, currency).reduce((acc, { amount, denom }) => {
@@ -73,7 +70,6 @@ export const getAmount = (
   denom: Denom,
   fallback = "0"
 ) => {
-  console.log(coins)
   return (
     (Array.isArray(coins)
       ? coins.find((c) => c.denom === denom)?.amount
