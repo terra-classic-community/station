@@ -14,7 +14,7 @@ const useAddress = () => {
     return connected?.addresses[chainID]
   }
 
-  window.location.reload()
+  // window.location.reload()
 
   return wallet?.words?.["330"]
     ? addressFromWords(wallet.words["330"])
