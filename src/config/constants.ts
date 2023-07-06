@@ -10,15 +10,15 @@ export const STATION_ASSETS = "https://station-assets.terrarebels.net"
 export const OBSERVER = "wss://observer.terrarebels.net"
 
 /* website */
-export const STATION = "https://station.terrarebels.net"
-export const FINDER = "https://finder.terrarebels.net"
+export const STATION = "https://station.terraclassic.community"
+export const FINDER = "https://finder.terraclassic.community"
 export const MINTSCAN = "https://www.mintscan.io"
 export const EXTENSION =
   "https://chrome.google.com/webstore/detail/akckefnapafjbpphkefbpkpcamkoaoai"
 export const DOCUMENTATION =
   "https://docs.terrarebels.net/learn/station/download/station-desktop.html"
 export const FORUMS = "https://forums.terrarebels.net"
-export const SETUP = "https://setup-station.terrarebels.net/"
+export const SETUP = "https://setup-station.terraclassic.community/"
 export const MARS_TEST_EXPLORER = "https://testnet-explorer.marsprotocol.io"
 export const MARS_EXPLORER = "https://explorer.marsprotocol.io"
 
