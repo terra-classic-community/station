@@ -114,8 +114,10 @@ const AssetList = () => {
         .filter((a) => {
           const { token } = readNativeDenom(a.denom)
 
-          if (!hideLowBal || a.price === 0 || alwaysVisibleDenoms.has(token))
-            return true
+          if (!hideLowBal || alwaysVisibleDenoms.has(token)) return true
+
+          if (hideLowBal && a.price === 0) return false
+
           return a.price * toInput(a.balance) >= 1
         })
         .sort(
