@@ -1,12 +1,19 @@
 import { useQuery } from "react-query"
 import axios, { AxiosError } from "axios"
-import { fromPairs, toPairs } from "ramda"
-import { flatten, groupBy, map, mergeAll, values } from "ramda"
+import {
+  flatten,
+  fromPairs,
+  groupBy,
+  map,
+  mergeAll,
+  toPairs,
+  values,
+} from "ramda"
 import { AccAddress } from "@terra-rebels/feather.js"
 import { ASSETS } from "config/constants"
 import shuffle from "utils/shuffle"
 import { queryKey, RefetchOptions } from "../query"
-// import { useNetworkName } from "../wallet"
+import { useNetworkName } from "../../auth/hooks/useNetwork"
 
 const config = { baseURL: ASSETS }
 
@@ -26,9 +33,7 @@ export const useTerraAssetsByNetwork = <T>(
   disabled = false,
   callback?: (data: T) => T
 ) => {
-  // FIXME: hard-coded network name for now
-  // const networkName = useNetworkName()
-  const networkName = "classic"
+  const networkName = useNetworkName()
 
   return useQuery<T | undefined, AxiosError>(
     [queryKey.TerraAssets, path, networkName],
