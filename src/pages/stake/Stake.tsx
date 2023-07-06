@@ -22,15 +22,15 @@ const Stake = () => {
 
   const tabs = [
     {
+      key: "manual",
+      tab: t("Manual Stake"),
+      children: <Validators />,
+    },
+    {
       key: "quick",
       tab: t("Quick Stake"),
       children: <QuickStake />,
       extra: <TooltipIcon content={<QuickStakeTooltip />} placement="bottom" />,
-    },
-    {
-      key: "manual",
-      tab: t("Manual Stake"),
-      children: <Validators />,
     },
   ]
 

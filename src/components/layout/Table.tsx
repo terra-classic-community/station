@@ -36,6 +36,7 @@ interface Props<T> {
   initialSorterKey?: string
   onSort?: () => void
   extra?: (data: T) => ReactNode
+  initExtraActive?: number
 
   className?: string
   size?: "default" | "small"
@@ -95,7 +96,9 @@ function Table<T>({ dataSource, filter, rowKey, ...props }: Props<T>) {
 
   const [sorterIndex, setSorterIndex] = useState<number | undefined>(initIndex)
   const [sortOrder, setSortOrder] = useState<SortOrder | undefined>(initOrder)
-  const [extraActive, setActive] = useState<number | undefined>()
+  const [extraActive, setActive] = useState<number | undefined>(
+    props.initExtraActive
+  )
 
   const sorter = useMemo(() => {
     if (typeof sorterIndex !== "number") return

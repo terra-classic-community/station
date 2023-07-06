@@ -152,6 +152,7 @@ const Validators = () => {
                   delegatedTo={delegatedTo}
                 />
               )}
+              initExtraActive={0}
               columns={[
                 {
                   title: t("Staking asset"),
