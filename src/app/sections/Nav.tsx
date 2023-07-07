@@ -26,6 +26,11 @@ const Nav = () => {
           <img src={icon} alt="Terra Classic Station" />{" "}
           <strong className={styles.title}>Terra Classic Station</strong>
         </NavLink>
+        {is.mobileNative() && (
+          <>
+            <QRScan />
+          </>
+        )}
         {isOpen && (
           <button className={styles.toggle} onClick={close}>
             <CloseIcon />
