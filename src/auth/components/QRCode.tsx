@@ -13,7 +13,7 @@ const QRCodeGen = ({ value }: { value: string }) => {
 
   return (
     <Flex>
-      <img style={{ maxWidth: "320px" }} src={imgSrc} />
+      <img style={{ maxWidth: "320px" }} src={imgSrc} alt="" />
     </Flex>
   )
 }
