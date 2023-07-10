@@ -1,6 +1,7 @@
 import { useZxing } from "react-zxing"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
+import { Flex } from "../../components/layout"
 
 const QRScan = () => {
   const navigate = useNavigate()
@@ -32,9 +33,9 @@ const QRScan = () => {
   })
 
   return (
-    <>
+    <Flex>
       <video ref={ref} />
-    </>
+    </Flex>
   )
 }
 
