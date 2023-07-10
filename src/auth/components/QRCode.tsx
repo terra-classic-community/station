@@ -1,19 +1,21 @@
-import QRCodeReact from "qrcode.react"
-import variable from "styles/variable"
 import { Flex } from "components/layout"
+import QRCode from "qrcode"
+import { useEffect, useState } from "react"
 
-const QRCode = ({ value }: { value: string }) => {
+const QRCodeGen = ({ value }: { value: string }) => {
+  const [imgSrc, setImgSrc] = useState("")
+
+  useEffect(() => {
+    QRCode.toDataURL(value, (e: any, url: string) => {
+      setImgSrc(url)
+    })
+  }, [value])
+
   return (
     <Flex>
-      <QRCodeReact
-        value={value}
-        size={320}
-        bgColor={variable("--card-bg")}
-        fgColor={variable("--text")}
-        renderAs="svg"
-      />
+      <img style={{ maxWidth: "320px" }} src={imgSrc} />
     </Flex>
   )
 }
 
-export default QRCode
+export default QRCodeGen

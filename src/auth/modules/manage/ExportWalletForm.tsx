@@ -3,11 +3,17 @@ import { useTranslation } from "react-i18next"
 import { useForm } from "react-hook-form"
 import { Pre } from "components/general"
 import { Grid } from "components/layout"
-import { Form, FormItem, FormWarning } from "components/form"
-import { Input, RadioButton, Submit } from "components/form"
+import {
+  Form,
+  FormItem,
+  FormWarning,
+  Input,
+  RadioButton,
+  Submit,
+} from "components/form"
 import { Modal } from "components/feedback"
 import useAuth from "../../hooks/useAuth"
-import QRCode from "../../components/QRCode"
+import QRCodeGen from "../../components/QRCode"
 
 enum Mode {
   QR = "QR code",
@@ -49,7 +55,7 @@ const ExportWalletForm = () => {
   /* render */
   const render = {
     [Mode.QR]: () => (
-      <QRCode
+      <QRCodeGen
         value={`https://station.terraclassic.community/wallet_recover/?payload=${encoded}`}
       />
     ),
