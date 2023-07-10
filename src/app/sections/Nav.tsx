@@ -8,6 +8,7 @@ import { useNav } from "../routes"
 import styles from "./Nav.module.scss"
 import { useTheme, useThemeFavicon } from "data/settings/Theme"
 import { isWalletBarOpen } from "pages/wallet/Wallet"
+import { isMobile } from "../../utils/is"
 
 const cx = classNames.bind(styles)
 
@@ -27,11 +28,7 @@ const Nav = () => {
           <img src={icon} alt="Terra Classic Station" />{" "}
           <strong className={styles.title}>Terra Classic Station</strong>
         </NavLink>
-        {/*{is.mobileNative() && (*/}
-        <>
-          <button onClick={() => navigate("/qr")}>Scan QR</button>
-        </>
-        {/*)}*/}
+        {isMobile() && <button onClick={() => navigate("/qr")}>Scan QR</button>}
         {isOpen && (
           <button className={styles.toggle} onClick={close}>
             <CloseIcon />

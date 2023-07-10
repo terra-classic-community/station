@@ -2,12 +2,12 @@
 export const LAZY_LIMIT = 999
 
 /* connection */
-export const BRIDGE = "https://walletconnect.terrarebels.net"
+export const BRIDGE = "https://walletconnect.terra.dev"
 
 /* api */
-export const ASSETS = "https://assets.terrarebels.net"
-export const STATION_ASSETS = "https://station-assets.terrarebels.net"
-export const OBSERVER = "wss://observer.terrarebels.net"
+export const ASSETS = "https://assets.terraclassic.community"
+export const STATION_ASSETS = "https://station-assets.terraclassic.community"
+export const OBSERVER = "wss://observer.terra.dev"
 
 /* website */
 export const STATION = "https://station.terraclassic.community"
@@ -17,14 +17,14 @@ export const EXTENSION =
   "https://chrome.google.com/webstore/detail/akckefnapafjbpphkefbpkpcamkoaoai"
 export const DOCUMENTATION =
   "https://docs.terrarebels.net/learn/station/download/station-desktop.html"
-export const FORUMS = "https://forums.terrarebels.net"
+export const FORUMS = "https://forums.hexxagon.io"
 export const SETUP = "https://setup-station.terraclassic.community/"
 export const MARS_TEST_EXPLORER = "https://testnet-explorer.marsprotocol.io"
 export const MARS_EXPLORER = "https://explorer.marsprotocol.io"
 
 /* website: stake */
 export const TERRA_VALIDATORS =
-  "https://github.com/terra-money/validator-profiles/tree/master/validators/"
+  "https://github.com/terra-rebels/validator-profiles/tree/master/validators/"
 
 export const STAKE_ID = "https://stake.id/#/validator/"
 
