@@ -1,10 +1,17 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { decode } from "js-base64"
-import { Form, FormError, FormItem } from "components/form"
-import { Input, TextArea, Submit, FormHelp } from "components/form"
+import {
+  Form,
+  FormError,
+  FormHelp,
+  FormItem,
+  Input,
+  Submit,
+  TextArea,
+} from "components/form"
 import { Grid } from "components/layout"
 
 import decrypt from "../../scripts/decrypt"
@@ -21,11 +28,12 @@ const ImportWalletForm = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { connect } = useAuth()
+  const { state }: { state: any } = useLocation()
 
   /* form */
   const form = useForm<Values>({ mode: "onChange" })
 
-  const { register, handleSubmit, formState } = form
+  const { register, handleSubmit, setValue, formState } = form
   const { errors, isValid } = formState
 
   const [error, setError] = useState<Error>()
@@ -58,6 +66,12 @@ const ImportWalletForm = () => {
       setError(error as Error)
     }
   }
+
+  useEffect(() => {
+    if (state) {
+      setValue("key", state)
+    }
+  }, [state, setValue])
 
   /* render */
   return (

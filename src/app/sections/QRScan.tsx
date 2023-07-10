@@ -1,40 +1,41 @@
-import { QrReader } from "react-qr-reader"
-import { ReactComponent as QRIcon } from "styles/images/menu/QR.svg"
+import { useZxing } from "react-zxing"
+import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 
 const QRScan = () => {
-  const [result, setResult] = useState("No result")
+  const navigate = useNavigate()
 
-  const handleError = (err) => {
-    console.err(err)
+  const schemeUrl = {
+    connectWallet: /^.*(wallet_connect|walletconnect_connect).*payload/,
+    recoverWallet: /^.*(|\/\/)wallet_recover\/\?payload=/,
+    send: /^.*(|\/\/)send\/\?payload=/,
   }
 
-  const handleScan = (result) => {
-    if (result) {
-      setResult(result)
-    }
-  }
+  const { ref } = useZxing({
+    async onResult(result) {
+      const data = result.getText()
 
-  const previewStyle = {
-    height: 240,
-    width: 320,
-  }
+      if (schemeUrl.recoverWallet.test(data)) {
+        // recover
+        const url = new URL(data)
+        const payload = url.searchParams.get("payload")
 
-  const render = () => {
-    return (
-      <QrReader
-        delay={500}
-        style={previewStyle}
-        onError={handleError}
-        onScan={handleScan}
-      />
-    )
-  }
-  // const getCamera = async () => {
-  //   const res = await WebViewMessage(RN_APIS.QR_SCAN)
-  //   return res
-  // }
+        return navigate("/auth/import", {
+          state: payload,
+        })
+      }
 
-  return <QRIcon style={{ width: 24, height: 24 }} onClick={render} />
+      toast.error("Not a valid QR code.", {
+        toastId: "qr-code-error",
+      })
+    },
+  })
+
+  return (
+    <>
+      <video ref={ref} />
+    </>
+  )
 }
 
 export default QRScan

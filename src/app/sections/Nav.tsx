@@ -1,12 +1,12 @@
 import { useEffect } from "react"
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink, useLocation, useNavigate } from "react-router-dom"
 import { useRecoilState, useSetRecoilState } from "recoil"
 import classNames from "classnames/bind"
 import CloseIcon from "@mui/icons-material/Close"
 import { mobileIsMenuOpenState } from "components/layout"
 import { useNav } from "../routes"
 import styles from "./Nav.module.scss"
-import { useThemeFavicon, useTheme } from "data/settings/Theme"
+import { useTheme, useThemeFavicon } from "data/settings/Theme"
 import { isWalletBarOpen } from "pages/wallet/Wallet"
 
 const cx = classNames.bind(styles)
@@ -18,6 +18,7 @@ const Nav = () => {
   const [isOpen, setIsOpen] = useRecoilState(mobileIsMenuOpenState)
   const close = () => setIsOpen(false)
   const { name } = useTheme()
+  const navigate = useNavigate()
 
   return (
     <nav>
@@ -26,11 +27,11 @@ const Nav = () => {
           <img src={icon} alt="Terra Classic Station" />{" "}
           <strong className={styles.title}>Terra Classic Station</strong>
         </NavLink>
-        {is.mobileNative() && (
-          <>
-            <QRScan />
-          </>
-        )}
+        {/*{is.mobileNative() && (*/}
+        <>
+          <button onClick={() => navigate("/qr")}>Scan QR</button>
+        </>
+        {/*)}*/}
         {isOpen && (
           <button className={styles.toggle} onClick={close}>
             <CloseIcon />

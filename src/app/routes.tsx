@@ -40,7 +40,6 @@ import PostMultisigTxPage from "pages/multisig/PostMultisigTxPage"
 import Auth from "auth/modules/Auth"
 //import ManageNetworksPage from "auth/networks/ManageNetworksPage"
 //import AddNetworkPage from "auth/networks/AddNetworkPage"
-
 /* settings */
 import Settings from "components/layout/GasAdjustment"
 import { useDevMode } from "utils/localStorage"
@@ -52,6 +51,7 @@ import Labs from "pages/labs/Labs"
 import NotFound from "pages/NotFound"
 
 import DonateAllVestingTokensTx from "txs/stake/DonateAllVestingTokensTx"
+import QRScan from "./sections/QRScan"
 
 const ICON_SIZE = { width: 20, height: 20 }
 
@@ -103,6 +103,7 @@ export const useNav = () => {
     ...menu,
     { path: "/validator/:address", element: <ValidatorDetails /> },
     { path: "/proposal/:chain/:id", element: <ProposalDetails /> },
+    { path: "/qr", element: <QRScan /> },
 
     /* multisig */
     { path: "/multisig/sign", element: <SignMultisigTxPage /> },

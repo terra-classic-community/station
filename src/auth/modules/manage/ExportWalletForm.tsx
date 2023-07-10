@@ -49,7 +49,9 @@ const ExportWalletForm = () => {
   /* render */
   const render = {
     [Mode.QR]: () => (
-      <QRCode value={`terrastation://wallet_recover/?payload=${encoded}`} />
+      <QRCode
+        value={`https://station.terraclassic.community/wallet_recover/?payload=${encoded}`}
+      />
     ),
     [Mode.KEY]: () => (
       <Pre normal break copy>
