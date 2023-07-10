@@ -1,4 +1,4 @@
-@import "mixins";
+@import "src/styles/mixins";
 
 .select__asset {
   @include flex(flex-start);

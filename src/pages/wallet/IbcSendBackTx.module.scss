@@ -1,4 +1,4 @@
-@import "mixins";
+@import "src/styles/mixins";
 
 .steps__container {
   @include flex(space-between);

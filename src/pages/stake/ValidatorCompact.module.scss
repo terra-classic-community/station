@@ -1,4 +1,4 @@
-@import "mixins";
+@import "src/styles/mixins";
 
 .header {
   @include flex(flex-start);

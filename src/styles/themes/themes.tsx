@@ -10,7 +10,7 @@ import AnimationWhale from "./Whale/Broadcasting.png"
 import AnimationMadness from "./Madness/Broadcasting.png"
 
 /* favicon */
-import FaviconLight from "./Light/favicon.svg"
+import FaviconLight from "./Dark/favicon.svg"
 import FaviconDark from "./Dark/favicon.svg"
 import FaviconBlossom from "./Blossom/favicon.svg"
 import FaviconMoon from "./Moon/favicon.svg"
