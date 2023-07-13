@@ -7,12 +7,15 @@ import { Grid } from "components/layout"
 import AddAddressBookItem from "./AddAddressBookItem"
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet"
 import ContactsIcon from "@mui/icons-material/Contacts"
+import QrCodeIcon from "@mui/icons-material/QrCode"
 import CustomItem from "./CustomItem"
 import { useState } from "react"
 import { useModal } from "components/feedback"
 import { useInterchainAddresses } from "auth/hooks/useAddress"
 import styles from "./AddressBookList.module.scss"
 import { useNetwork } from "data/wallet"
+import { isMobile } from "../../utils/is"
+import ScanQR from "../../components/general/ScanQR"
 
 interface Props {
   onClick: (item: AddressBook) => void
@@ -26,6 +29,13 @@ const AddressBookList = ({ onClick }: Props) => {
   const addresses = useInterchainAddresses()
   const networks = useNetwork()
   const close = useModal()
+
+  const handleScan = (result: any) => {
+    if (!!result) {
+      onClick({ name: "", recipient: result })
+      close()
+    }
+  }
 
   if (openMy) {
     return (
@@ -90,6 +100,17 @@ const AddressBookList = ({ onClick }: Props) => {
           <PersonAddOutlinedIcon fontSize="inherit" />
           {t("Add an address")}
         </Button>
+        {isMobile() && (
+          <ScanQR
+            renderButton={(open) => (
+              <Button onClick={open}>
+                <QrCodeIcon fontSize="inherit" />
+                {t("Scan address from QR code")}
+              </Button>
+            )}
+            onResult={handleScan}
+          />
+        )}
         <Button onClick={() => setOpenMy(true)}>
           <AccountBalanceWalletIcon fontSize="inherit" />
           {t("Select from your addresses")}

@@ -9,6 +9,9 @@ import styles from "./Nav.module.scss"
 import { useTheme, useThemeFavicon } from "data/settings/Theme"
 import { isWalletBarOpen } from "pages/wallet/Wallet"
 import { isMobile } from "../../utils/is"
+import QrCodeIcon from "@mui/icons-material/QrCode"
+import ScanQR from "../../components/general/ScanQR"
+import { toast } from "react-toastify"
 
 const cx = classNames.bind(styles)
 
@@ -21,6 +24,30 @@ const Nav = () => {
   const { name } = useTheme()
   const navigate = useNavigate()
 
+  const handleScan = (result: any) => {
+    const schemeUrl = {
+      connectWallet: /^.*(wallet_connect|walletconnect_connect).*payload/,
+      recoverWallet: /^.*(|\/\/)wallet_recover\/\?payload=/,
+      send: /^.*(|\/\/)send\/\?payload=/,
+    }
+
+    if (!!result) {
+      if (schemeUrl.recoverWallet.test(result)) {
+        // recover
+        const url = new URL(result)
+        const payload = url.searchParams.get("payload")
+
+        return navigate("/auth/import", {
+          state: payload,
+        })
+      }
+    }
+
+    toast.error("Not a valid QR code.", {
+      toastId: "qr-code-error",
+    })
+  }
+
   return (
     <nav>
       <header className={styles.header}>
@@ -28,7 +55,16 @@ const Nav = () => {
           <img src={icon} alt="Terra Classic Station" />{" "}
           <strong className={styles.title}>Terra Classic Station</strong>
         </NavLink>
-        {isMobile() && <button onClick={() => navigate("/qr")}>Scan QR</button>}
+        {isMobile() && (
+          <ScanQR
+            renderButton={(open) => (
+              <button>
+                <QrCodeIcon style={{ fontSize: 18 }} onClick={open} />
+              </button>
+            )}
+            onResult={handleScan}
+          />
+        )}
         {isOpen && (
           <button className={styles.toggle} onClick={close}>
             <CloseIcon />

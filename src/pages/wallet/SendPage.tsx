@@ -347,6 +347,12 @@ const SendPage = () => {
     {}
   )
 
+  const handleScan = (result: any) => {
+    if (!!result) {
+      setValue("recipient", result)
+    }
+  }
+
   return (
     // @ts-expect-error
     <Tx {...tx}>
@@ -385,26 +391,30 @@ const SendPage = () => {
                 <ModalButton
                   title={t("Address book")}
                   renderButton={(open) => (
-                    <Input
-                      {...register("recipient", {
-                        validate: {
-                          ...validate.recipient(),
-                          ...validate.ibc(
-                            networks,
-                            chain ?? "",
-                            token?.denom ?? "",
-                            getIBCChannel,
-                            readNativeDenom(token?.denom ?? "").isAxelar
-                          ),
-                        },
-                      })}
-                      placeholder={SAMPLE_ADDRESS}
-                      actionButton={{
-                        icon: <ContactsIcon />,
-                        onClick: open,
-                      }}
-                      autoFocus
-                    />
+                    <div className={styles.wrapper}>
+                      <Input
+                        {...register("recipient", {
+                          validate: {
+                            ...validate.recipient(),
+                            ...validate.ibc(
+                              networks,
+                              chain ?? "",
+                              token?.denom ?? "",
+                              getIBCChannel,
+                              readNativeDenom(token?.denom ?? "").isAxelar
+                            ),
+                          },
+                        })}
+                        placeholder={SAMPLE_ADDRESS}
+                        actionButton={{
+                          icon: <ContactsIcon />,
+                          onClick: open,
+                        }}
+                        autoFocus
+                        withQR
+                        handleScan={handleScan}
+                      />
+                    </div>
                   )}
                 >
                   <AddressBookList

@@ -4,6 +4,9 @@ import SearchIcon from "@mui/icons-material/Search"
 import { WithTokenItem } from "data/token"
 import { Flex } from "../layout"
 import styles from "./Input.module.scss"
+import QrCodeIcon from "@mui/icons-material/QrCode"
+import ScanQR from "../general/ScanQR"
+import { isMobile } from "../../utils/is"
 
 const cx = classNames.bind(styles)
 
@@ -14,11 +17,13 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
     icon: ReactNode
     onClick: () => void
   }
+  withQR?: boolean
+  handleScan?: any
 }
 
 const Input = forwardRef(
   (
-    { selectBefore, token, actionButton, ...attrs }: Props,
+    { selectBefore, token, actionButton, withQR, handleScan, ...attrs }: Props,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     return (
@@ -45,18 +50,32 @@ const Input = forwardRef(
           </WithTokenItem>
         )}
 
-        {actionButton && (
-          <button
-            type="button"
-            className={classNames(styles.symbol, styles.after)}
-            onClick={(e) => {
-              actionButton.onClick()
-              e.stopPropagation()
-              e.preventDefault()
-            }}
-          >
-            {actionButton.icon}
-          </button>
+        {(actionButton || withQR) && (
+          <Flex gap={10} className={classNames(styles.symbol, styles.after)}>
+            {actionButton && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  actionButton.onClick()
+                  e.stopPropagation()
+                  e.preventDefault()
+                }}
+              >
+                {actionButton.icon}
+              </button>
+            )}
+
+            {withQR && isMobile() && (
+              <ScanQR
+                renderButton={(open) => (
+                  <button type="button" onClick={open}>
+                    <QrCodeIcon style={{ fontSize: 18 }} />
+                  </button>
+                )}
+                onResult={handleScan}
+              />
+            )}
+          </Flex>
         )}
       </div>
     )

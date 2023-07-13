@@ -6,7 +6,7 @@ import { truncate } from "@terra-money/terra-utils"
 import { useAddressBook } from "data/settings/AddressBook"
 import { useTnsAddress } from "data/external/tns"
 import { InlineFlex } from "components/layout"
-import { Form, FormItem, Submit, Input } from "components/form"
+import { Form, FormItem, Input, Submit } from "components/form"
 import { Fetching } from "components/feedback"
 import validate from "txs/validate"
 
@@ -16,7 +16,7 @@ const AddAddressBookItem = ({ close }: { close: () => void }) => {
 
   /* form */
   const form = useForm<AddressBook>({ mode: "onChange" })
-  const { register, watch, setError, handleSubmit, formState } = form
+  const { register, watch, setError, handleSubmit, setValue, formState } = form
   const { errors } = formState
   const { recipient } = watch()
 
@@ -51,6 +51,12 @@ const AddAddressBookItem = ({ close }: { close: () => void }) => {
     )
   }
 
+  const handleScan = (result: any) => {
+    if (!!result) {
+      setValue("recipient", result)
+    }
+  }
+
   return (
     <Fetching isFetching={tnsState.isLoading}>
       <Form onSubmit={handleSubmit(submit)}>
@@ -72,6 +78,8 @@ const AddAddressBookItem = ({ close }: { close: () => void }) => {
           error={errors.recipient?.message}
         >
           <Input
+            withQR
+            handleScan={handleScan}
             {...register("recipient", { validate: validate.recipient() })}
           />
         </FormItem>
