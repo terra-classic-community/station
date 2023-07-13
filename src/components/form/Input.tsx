@@ -65,7 +65,7 @@ const Input = forwardRef(
               </button>
             )}
 
-            {withQR && isMobile() && (
+            {withQR && (
               <ScanQR
                 renderButton={(open) => (
                   <button type="button" onClick={open}>

@@ -9,6 +9,7 @@ import { InlineFlex } from "components/layout"
 import { Form, FormItem, Input, Submit } from "components/form"
 import { Fetching } from "components/feedback"
 import validate from "txs/validate"
+import { isMobile } from "../../utils/is"
 
 const AddAddressBookItem = ({ close }: { close: () => void }) => {
   const { t } = useTranslation()
@@ -78,7 +79,7 @@ const AddAddressBookItem = ({ close }: { close: () => void }) => {
           error={errors.recipient?.message}
         >
           <Input
-            withQR
+            withQR={isMobile()}
             handleScan={handleScan}
             {...register("recipient", { validate: validate.recipient() })}
           />
