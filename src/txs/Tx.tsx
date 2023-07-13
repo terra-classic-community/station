@@ -164,7 +164,8 @@ function Tx<TxValues>(props: Props<TxValues>) {
         return unsignedTx.auth_info.fee.gas_limit
       } catch (error) {
         console.error(error)
-        return 200_000
+        // return 200_000
+        return 0
       }
     },
     {
