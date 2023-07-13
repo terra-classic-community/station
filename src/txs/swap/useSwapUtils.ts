@@ -79,10 +79,10 @@ const useSwapUtils = () => {
     [findPair]
   )
 
-  const getIsAstroportAvailable = useCallback(
-    (assets: SwapAssets) => !!findPair(assets, "astroport"),
-    [findPair]
-  )
+  // const getIsAstroportAvailable = useCallback(
+  //   (assets: SwapAssets) => !!findPair(assets, "astroport"),
+  //   [findPair]
+  // )
 
   const getIsRouteswapAvaialble = useCallback(
     (assets: SwapAssets) => {
@@ -104,7 +104,7 @@ const useSwapUtils = () => {
 
       const functions = {
         [SwapMode.TERRASWAP]: getIsTerraswapAvailable,
-        [SwapMode.ASTROPORT]: getIsAstroportAvailable,
+        // [SwapMode.ASTROPORT]: getIsAstroportAvailable,
         [SwapMode.ROUTESWAP]: getIsRouteswapAvaialble,
       }
 
@@ -112,7 +112,7 @@ const useSwapUtils = () => {
         .filter(([, fn]) => fn(assets))
         .map(([key]) => key as SwapMode)
     },
-    [getIsTerraswapAvailable, getIsAstroportAvailable, getIsRouteswapAvaialble]
+    [getIsTerraswapAvailable, getIsRouteswapAvaialble]
   )
 
   const getIsSwapAvailable = (assets: Partial<SwapAssets>) =>

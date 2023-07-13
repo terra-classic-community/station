@@ -4,7 +4,7 @@
   "hompage": "https://station.terraclassic.community",
   "author": "Terra Rebels <support@terrarebels.net> (https://terrarebels.net)",
   "repository": "github:terra-classic-community/station",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "scripts": {
     "start": "react-app-rewired start",

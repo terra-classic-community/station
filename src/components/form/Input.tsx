@@ -6,7 +6,6 @@ import { Flex } from "../layout"
 import styles from "./Input.module.scss"
 import QrCodeIcon from "@mui/icons-material/QrCode"
 import ScanQR from "../general/ScanQR"
-import { isMobile } from "../../utils/is"
 
 const cx = classNames.bind(styles)
 
