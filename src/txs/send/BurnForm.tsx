@@ -193,7 +193,7 @@ const BurnForm = ({ chainID }: { chainID: string }) => {
             <Grid gap={4}>
               <FormWarning>
                 {t(
-                  "You are about to send funds to the community pool (distribution module), this operation cannot be reversed"
+                  "You are about to send funds to the burn address below, this operation cannot be reversed"
                 )}
               </FormWarning>
             </Grid>
