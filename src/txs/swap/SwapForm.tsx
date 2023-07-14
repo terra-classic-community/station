@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom"
 import { useQuery } from "react-query"
 import { useForm } from "react-hook-form"
 import BigNumber from "bignumber.js"
-import { AccAddress } from "@terra-rebels/terra.js"
+import { AccAddress } from "@terra-rebels/feather.js"
 import { isDenomTerra, toAmount } from "@terra-money/terra-utils"
 
 /* helpers */

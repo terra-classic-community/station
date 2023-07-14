@@ -32,6 +32,7 @@ interface InterchainNetwork {
   }
   version?: string
   isClassic?: boolean
+  burnAddress?: string
   explorer: {
     address?: string
     tx?: string
