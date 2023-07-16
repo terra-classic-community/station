@@ -1,5 +1,5 @@
 import { debug } from "utils/env"
-import { isMobile } from "../../utils/is"
+import { isWallet } from "../index"
 
 export const sandbox =
-  debug.auth || process.env.REACT_APP_SANDBOX === "true" || isMobile()
+  debug.auth || process.env.REACT_APP_SANDBOX === "true" || isWallet.mobile()

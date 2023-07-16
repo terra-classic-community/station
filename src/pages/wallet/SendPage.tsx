@@ -32,7 +32,7 @@ import Tx from "txs/Tx"
 import AddressBookList from "txs/AddressBook/AddressBookList"
 import { ModalButton } from "components/feedback"
 import AssetSelector from "components/form/Selectors/AssetSelector/AssetSelector"
-import { isMobile } from "../../utils/is"
+import { isWallet } from "../../auth"
 
 interface TxValues {
   asset?: string
@@ -412,7 +412,7 @@ const SendPage = () => {
                           onClick: open,
                         }}
                         autoFocus
-                        withQR={isMobile()}
+                        withQR={isWallet.mobile()}
                         handleScan={handleScan}
                       />
                     </div>

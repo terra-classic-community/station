@@ -15,6 +15,7 @@ import ManageWallets from "./manage/ManageWallets"
 import ExportWalletPage from "./manage/ExportWalletPage"
 import ChangePasswordPage from "./manage/ChangePasswordPage"
 import DeleteWalletPage from "./manage/DeleteWalletPage"
+import RecoverBridgePage from "./create/RecoverBridgePage"
 
 const Auth = () => {
   return (
@@ -28,6 +29,7 @@ const Auth = () => {
       {/* create */}
       <Route path="new" element={<NewWalletPage />} />
       <Route path="recover" element={<RecoverWalletPage />} />
+      <Route path="recover-bridge" element={<RecoverBridgePage />} />
       <Route path="import" element={<ImportWalletPage />} />
       <Route path="multisig/new" element={<NewMultisigWalletPage />} />
 

@@ -29,12 +29,20 @@ const isLedger = (
   return "ledger" in wallet
 }
 
+export const isMobile = (): boolean => {
+  return (
+    window.matchMedia("(display-mode: standalone)").matches &&
+    navigator.userAgent.indexOf("Mobi") > -1
+  )
+}
+
 const is = {
   local: isLocal,
   preconfigured: isPreconfigured,
   multisig: isMultisig,
   single: isSingle,
   ledger: isLedger,
+  mobile: isMobile,
 }
 
 export default is
