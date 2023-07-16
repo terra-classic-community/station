@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next"
 import { Card, Page } from "components/layout"
 import { Wrong } from "components/feedback"
-import { isWallet, useAuth } from "auth"
 import useDefaultValues from "./utils/useDefaultValues"
 import SignMultisigTxForm from "./SignMultisigTxForm"
+import isWallet from "../../auth/scripts/isWallet"
+import useAuth from "../../auth/hooks/useAuth"
 
 const SignMultisigTxPage = () => {
   const { t } = useTranslation()

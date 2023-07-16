@@ -9,9 +9,9 @@ import { Grid } from "components/layout"
 import { List } from "components/display"
 import { ModalButton } from "components/feedback"
 import { FormHelp } from "components/form"
-import { useAuth } from "auth"
 import SwitchWallet from "auth/modules/select/SwitchWallet"
 import Connected from "./Connected"
+import useAuth from "../../auth/hooks/useAuth"
 
 interface Props {
   renderButton?: RenderButton

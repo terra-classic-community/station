@@ -10,7 +10,7 @@ import { useTheme, useThemeFavicon } from "data/settings/Theme"
 import { isWalletBarOpen } from "pages/wallet/Wallet"
 import QrCodeIcon from "@mui/icons-material/QrCode"
 import ScanQR from "../../components/general/ScanQR"
-import is from "../../auth/scripts/is"
+import isWallet from "../../auth/scripts/isWallet"
 
 const cx = classNames.bind(styles)
 
@@ -29,7 +29,7 @@ const Nav = () => {
           <img src={icon} alt="Terra Classic Station" />{" "}
           <strong className={styles.title}>Terra Classic Station</strong>
         </NavLink>
-        {is.mobile() && (
+        {isWallet.mobile() && (
           <ScanQR
             renderButton={(open) => (
               <button>

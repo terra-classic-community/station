@@ -6,12 +6,13 @@ import { useAccountInfo } from "data/queries/auth"
 import { Card, Grid, Page } from "components/layout"
 import { FormHelp } from "components/form"
 import { Wrong } from "components/feedback"
-import { isWallet, useAuth } from "auth"
 import CreateMultisigWalletForm from "auth/modules/create/CreateMultisigWalletForm"
 import ConfirmModal from "auth/modules/manage/ConfirmModal"
 import useDefaultValues from "./utils/useDefaultValues"
 import PostMultisigTxForm from "./PostMultisigTxForm"
 import { useInterchainAddresses } from "auth/hooks/useAddress"
+import isWallet from "../../auth/scripts/isWallet"
+import useAuth from "../../auth/hooks/useAuth"
 
 const PostMultisigTxPage = () => {
   const { t } = useTranslation()

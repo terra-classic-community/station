@@ -1,4 +1,4 @@
-import is from "./is"
+import isWallet from "./isWallet"
 import encrypt from "./encrypt"
 import decrypt from "./decrypt"
 import { addressFromWords, wordsFromAddress } from "utils/bech32"
@@ -115,7 +115,7 @@ export const addWallet = (params: AddWalletParams) => {
       : wallet.address !== addressFromWords(params.words["330"])
   )
 
-  if (is.multisig(params) || is.ledger(params)) {
+  if (isWallet.multisig(params) || isWallet.ledger(params)) {
     storeWallets([...next, params])
   } else {
     const { name, password, words, key } = params

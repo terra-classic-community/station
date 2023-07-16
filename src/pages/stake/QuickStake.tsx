@@ -25,8 +25,8 @@ import TokenSelector, {
   TokenInterface,
 } from "components/form/Selectors/TokenSelector/TokenSelector"
 import { useState } from "react"
-import { useAuth } from "auth"
-import is from "auth/scripts/is"
+import isWallet from "auth/scripts/isWallet"
+import useAuth from "../../auth/hooks/useAuth"
 
 export enum QuickStakeAction {
   DELEGATE = "Delegate",
@@ -314,7 +314,7 @@ const QuickStake = () => {
                   <ModalButton
                     title={t("Staking Details")}
                     renderButton={(open) =>
-                      is.ledger(wallet) && isAlliance ? (
+                      isWallet.ledger(wallet) && isAlliance ? (
                         <InlineFlex gap={4} start>
                           <Tooltip
                             content={

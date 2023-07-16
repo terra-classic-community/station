@@ -3,7 +3,7 @@ import { useNetworks } from "app/InitNetworks"
 import { getStoredNetwork, storeNetwork } from "../scripts/network"
 import { useWallet, WalletStatus } from "@terra-rebels/wallet-provider"
 import { walletState } from "./useAuth"
-import is from "../scripts/is"
+import isWallet from "../scripts/isWallet"
 import { useCustomLCDs } from "utils/localStorage"
 
 const networkState = atom({
@@ -69,7 +69,7 @@ export const useNetwork = (): Record<ChainID, InterchainNetwork> => {
   }
 
   // multisig wallet are supported only on terra
-  if (is.multisig(wallet)) {
+  if (isWallet.multisig(wallet)) {
     const terra = Object.values(
       withCustomLCDs(
         networks[network as NetworkName] as Record<ChainID, InterchainNetwork>
@@ -98,8 +98,7 @@ export const useNetwork = (): Record<ChainID, InterchainNetwork> => {
 }
 
 export const useNetworkName = () => {
-  const network = useRecoilValue(networkState)
-  return network
+  return useRecoilValue(networkState)
 }
 
 export const useChainID = () => {

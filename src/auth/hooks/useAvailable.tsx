@@ -4,7 +4,7 @@ import SettingsBackupRestoreIcon from "@mui/icons-material/SettingsBackupRestore
 import KeyIcon from "@mui/icons-material/Key"
 import GroupsIcon from "@mui/icons-material/Groups"
 import { sandbox } from "../scripts/env"
-import is from "../scripts/is"
+import isWallet from "../scripts/isWallet"
 
 const useAvailable = () => {
   const { t } = useTranslation()
@@ -18,7 +18,7 @@ const useAvailable = () => {
       icon: <AddCircleOutlineIcon />,
     },
     {
-      to: is.mobile() ? "/auth/recover-bridge" : "/auth/recover",
+      to: isWallet.mobile() ? "/auth/recover-bridge" : "/auth/recover",
       children: t("Recover wallet"),
       icon: <SettingsBackupRestoreIcon />,
     },

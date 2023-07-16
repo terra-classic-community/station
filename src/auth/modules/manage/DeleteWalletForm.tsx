@@ -5,10 +5,10 @@ import { useForm } from "react-hook-form"
 import DoneAllIcon from "@mui/icons-material/DoneAll"
 import { Form, FormItem, FormWarning, Input, Submit } from "components/form"
 import { Wrong } from "components/feedback"
-import { isWallet } from "auth"
 import { deleteWallet } from "../../scripts/keystore"
 import useAuth from "../../hooks/useAuth"
 import ConfirmModal from "./ConfirmModal"
+import isWallet from "../../scripts/isWallet"
 
 interface Values {
   name: string

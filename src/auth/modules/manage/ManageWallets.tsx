@@ -7,7 +7,7 @@ import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined"
 import LogoutIcon from "@mui/icons-material/Logout"
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import { Col, Page } from "components/layout"
-import is from "../../scripts/is"
+import isWallet from "../../scripts/isWallet"
 import useAuth from "../../hooks/useAuth"
 import AuthList from "../../components/AuthList"
 import ConnectedWallet from "./ConnectedWallet"
@@ -67,9 +67,9 @@ export const useManageWallet = () => {
 
   if (!wallet) return
 
-  return is.multisig(wallet)
+  return isWallet.multisig(wallet)
     ? [toPostMultisig, toDelete, disconnectWallet]
-    : is.ledger(wallet)
+    : isWallet.ledger(wallet)
     ? [toSignMultisig, disconnectWallet]
     : [toExport, toPassword, toDelete, toSignMultisig, lockWallet]
 }

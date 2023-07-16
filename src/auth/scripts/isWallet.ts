@@ -36,7 +36,7 @@ export const isMobile = (): boolean => {
   )
 }
 
-const is = {
+const isWallet = {
   local: isLocal,
   preconfigured: isPreconfigured,
   multisig: isMultisig,
@@ -45,4 +45,4 @@ const is = {
   mobile: isMobile,
 }
 
-export default is
+export default isWallet

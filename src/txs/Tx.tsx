@@ -47,7 +47,6 @@ import { Details } from "components/display"
 import { Read } from "components/token"
 import ConnectWallet from "app/sections/ConnectWallet"
 import useToPostMultisigTx from "pages/multisig/utils/useToPostMultisigTx"
-import { isWallet, useAuth } from "auth"
 import { PasswordError } from "auth/scripts/keystore"
 
 import { calcTaxes, CoinInput, toInput } from "./utils"
@@ -57,6 +56,8 @@ import { useInterchainAddresses } from "auth/hooks/useAddress"
 import { getShouldTax, useTaxCap, useTaxRate } from "data/queries/treasury"
 import { useNativeDenoms } from "data/token"
 import { getAmount, sortByDenom } from "../utils/coin"
+import isWallet from "../auth/scripts/isWallet"
+import useAuth from "../auth/hooks/useAuth"
 
 interface Props<TxValues> {
   /* Only when the token is paid out of the balance held */

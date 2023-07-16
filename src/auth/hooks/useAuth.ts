@@ -6,7 +6,7 @@ import { AccAddress, SignDoc } from "@terra-rebels/feather.js"
 import { RawKey, SignatureV2 } from "@terra-rebels/feather.js"
 import { LedgerKey } from "@terra-rebels/ledger-station-js"
 import { useInterchainLCDClient } from "data/queries/lcdClient"
-import is from "../scripts/is"
+import isWallet from "../scripts/isWallet"
 import { addWallet, PasswordError } from "../scripts/keystore"
 import { getDecryptedKey, testPassword } from "../scripts/keystore"
 import { getWallet, storeWallet } from "../scripts/keystore"
@@ -43,7 +43,7 @@ const useAuth = () => {
 
         if (lock) throw new Error("Wallet is locked")
 
-        const wallet = is.multisig(storedWallet)
+        const wallet = isWallet.multisig(storedWallet)
           ? { name, words, multisig: true as true }
           : { name, words }
 
@@ -84,7 +84,7 @@ const useAuth = () => {
 
   /* connected */
   const connectedWallet = useMemo(() => {
-    if (!is.local(wallet)) return
+    if (!isWallet.local(wallet)) return
     return wallet
   }, [wallet])
 
@@ -112,7 +112,8 @@ const useAuth = () => {
   }
 
   const getLedgerKey = async (coinType: string) => {
-    if (!is.ledger(wallet)) throw new Error("Ledger device is not connected")
+    if (!isWallet.ledger(wallet))
+      throw new Error("Ledger device is not connected")
     const { index, bluetooth } = wallet
     const transport = bluetooth ? createBleTransport : undefined
 
@@ -174,7 +175,7 @@ const useAuth = () => {
       tx.body
     )
 
-    if (is.ledger(wallet)) {
+    if (isWallet.ledger(wallet)) {
       const key = await getLedgerKey(networks[chainID].coinType)
       return await key.createSignatureAmino(doc)
     } else {
@@ -191,7 +192,7 @@ const useAuth = () => {
   const sign = async (txOptions: CreateTxOptions, password = "") => {
     if (!wallet) throw new Error("Wallet is not defined")
 
-    if (is.ledger(wallet)) {
+    if (isWallet.ledger(wallet)) {
       const key = await getLedgerKey(networks[txOptions.chainID].coinType)
       const wallet = lcd.wallet(key)
       const signMode = SignatureV2.SignMode.SIGN_MODE_LEGACY_AMINO_JSON
@@ -217,7 +218,7 @@ const useAuth = () => {
   const signBytes = (bytes: Buffer, password = "") => {
     if (!wallet) throw new Error("Wallet is not defined")
 
-    if (is.ledger(wallet)) {
+    if (isWallet.ledger(wallet)) {
       throw new Error("Ledger can not sign arbitrary data")
     } else {
       const pk = getKey(password)

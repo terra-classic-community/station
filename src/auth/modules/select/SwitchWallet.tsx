@@ -8,7 +8,7 @@ import MultisigBadge from "../../components/MultisigBadge"
 import UsbIcon from "@mui/icons-material/Usb"
 import BluetoothIcon from "@mui/icons-material/Bluetooth"
 import useAuth from "../../hooks/useAuth"
-import is from "../../scripts/is"
+import isWallet from "../../scripts/isWallet"
 import SelectPreconfigured from "./SelectPreconfigured"
 import styles from "./SwitchWallet.module.scss"
 import { useWallet } from "@terra-rebels/use-wallet"
@@ -30,8 +30,8 @@ const SwitchWallet = () => {
               active={true}
             >
               <Flex gap={4}>
-                {is.multisig(wallet) && <MultisigBadge />}
-                {is.ledger(wallet) &&
+                {isWallet.multisig(wallet) && <MultisigBadge />}
+                {isWallet.ledger(wallet) &&
                   (wallet.bluetooth ? (
                     <BluetoothIcon style={{ fontSize: 14 }} />
                   ) : (
@@ -52,8 +52,8 @@ const SwitchWallet = () => {
             const children = (
               <>
                 <Flex gap={4}>
-                  {is.multisig(wallet) && <MultisigBadge />}
-                  {is.ledger(wallet) &&
+                  {isWallet.multisig(wallet) && <MultisigBadge />}
+                  {isWallet.ledger(wallet) &&
                     (wallet.bluetooth ? (
                       <BluetoothIcon style={{ fontSize: 14 }} />
                     ) : (

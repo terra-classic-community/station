@@ -9,20 +9,20 @@ import { useAddress } from "data/wallet"
 import { useTnsName } from "data/external/tns"
 import { Button } from "components/general"
 import { Grid } from "components/layout"
-import { Popover, List } from "components/display"
-import { isWallet } from "auth"
+import { List, Popover } from "components/display"
 import useAuth from "auth/hooks/useAuth"
 import SwitchWallet from "auth/modules/select/SwitchWallet"
 import PopoverNone from "../components/PopoverNone"
 import styles from "./Connected.module.scss"
 import { useRecoilState } from "recoil"
-import { isWalletBarOpen, walletBarRoute, Path } from "pages/wallet/Wallet"
+import { isWalletBarOpen, Path, walletBarRoute } from "pages/wallet/Wallet"
 import { useNavigate } from "react-router-dom"
 import { useWallet } from "@terra-rebels/use-wallet"
 import {
   Contacts as ContactsIcon,
   Logout as LogoutIcon,
 } from "@mui/icons-material"
+import isWallet from "../../auth/scripts/isWallet"
 
 const Connected = () => {
   const { t } = useTranslation()

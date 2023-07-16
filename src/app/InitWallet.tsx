@@ -1,10 +1,11 @@
 import { PropsWithChildren, useEffect } from "react"
 import { WalletStatus } from "@terra-rebels/wallet-types"
 import { useWallet } from "@terra-rebels/use-wallet"
-import { isWallet, useAuth } from "auth"
 import Online from "./containers/Online"
 import NetworkLoading from "./NetworkLoading"
 import { sandbox } from "auth/scripts/env"
+import isWallet from "../auth/scripts/isWallet"
+import useAuth from "../auth/hooks/useAuth"
 
 const InitWallet = ({ children }: PropsWithChildren<{}>) => {
   useOnNetworkChange()
@@ -33,8 +34,7 @@ export default InitWallet
 /* hooks */
 const useOnNetworkChange = () => {
   const { wallet, disconnect } = useAuth()
-  const isPreconfiguredWallet = isWallet.preconfigured(wallet)
-  const shouldDisconnect = isPreconfiguredWallet
+  const shouldDisconnect = isWallet.preconfigured(wallet)
 
   useEffect(() => {
     if (shouldDisconnect) disconnect()
