@@ -15,7 +15,7 @@ import { useInterchainAddresses } from "auth/hooks/useAddress"
 import styles from "./AddressBookList.module.scss"
 import { useNetwork } from "data/wallet"
 import ScanQR from "../../components/general/ScanQR"
-import { isWallet } from "../../auth"
+import is from "../../auth/scripts/is"
 
 interface Props {
   onClick: (item: AddressBook) => void
@@ -100,7 +100,7 @@ const AddressBookList = ({ onClick }: Props) => {
           <PersonAddOutlinedIcon fontSize="inherit" />
           {t("Add an address")}
         </Button>
-        {isWallet.mobile() && (
+        {is.mobile() && (
           <ScanQR
             renderButton={(open) => (
               <Button onClick={open}>
