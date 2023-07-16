@@ -55,9 +55,10 @@ import { useInterchainLCDClient } from "data/queries/lcdClient"
 import { useInterchainAddresses } from "auth/hooks/useAddress"
 import { getShouldTax, useTaxCap, useTaxRate } from "data/queries/treasury"
 import { useNativeDenoms } from "data/token"
-import { getAmount, sortByDenom } from "../utils/coin"
+import { getAmount, sortByDenom, sortCoins } from "../utils/coin"
 import isWallet from "../auth/scripts/isWallet"
 import useAuth from "../auth/hooks/useAuth"
+import { useCurrency } from "../data/settings/Currency"
 
 interface Props<TxValues> {
   /* Only when the token is paid out of the balance held */
@@ -110,6 +111,7 @@ function Tx<TxValues>(props: Props<TxValues>) {
 
   /* context */
   const { t } = useTranslation()
+  const currency = useCurrency()
   const lcd = useInterchainLCDClient()
   const networks = useNetwork()
   const { post } = useWallet()
@@ -360,6 +362,10 @@ function Tx<TxValues>(props: Props<TxValues>) {
   const renderFee = (descriptions?: Contents) => {
     if (!estimatedGas) return null
 
+    const renderTaxes = sortCoins(taxes ?? new Coins(), currency.name).filter(
+      ({ amount }) => has(amount)
+    )
+
     return (
       <Details>
         <dl>
@@ -369,6 +375,22 @@ function Tx<TxValues>(props: Props<TxValues>) {
               <dd>{content}</dd>
             </Fragment>
           ))}
+
+          {!!isClassic && (
+            <>
+              <dt>{t("Tax")}</dt>
+              <dd>
+                {renderTaxes.map((coin) => (
+                  <p key={coin.denom}>
+                    <Read {...coin} />
+                  </p>
+                ))}
+                {!renderTaxes.length && (
+                  <Read amount="0" token={token} decimals={decimals} />
+                )}
+              </dd>
+            </>
+          )}
 
           <dt className={styles.gas}>
             {t("Fee")}
