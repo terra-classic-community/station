@@ -303,7 +303,10 @@ const SendPage = () => {
   )
 
   /* fee */
-  const coins = [{ input, denom: "" }] as CoinInput[]
+  const taxRequired = chain === "columbus-5"
+  const coins = [
+    { input, denom: token?.denom ?? "", taxRequired: taxRequired },
+  ] as CoinInput[]
   const estimationTxValues = useMemo(() => {
     return {
       address: addresses?.[chain ?? "columbus-5"],

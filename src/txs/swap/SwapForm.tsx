@@ -234,7 +234,7 @@ const SwapForm = ({ chainID }: { chainID: string }) => {
     }
   )
 
-  const taxRequired = mode !== SwapMode.TERRASWAP
+  const taxRequired = mode === SwapMode.TERRASWAP
   const token = offerAsset
   const coins = [{ input, denom: token, taxRequired }] as CoinInput[]
   const decimals = offerDecimals

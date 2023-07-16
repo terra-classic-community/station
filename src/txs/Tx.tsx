@@ -198,11 +198,17 @@ function Tx<TxValues>(props: Props<TxValues>) {
   const gasFee = { amount: gasAmount, denom: gasDenom }
 
   /* max */
+  // const getNativeMax = () => {
+  //   if (!balance) return
+  //   return gasFee.denom === token
+  //     ? (Number(balance) - Number(gasFee.amount)).toFixed(0)
+  //     : balance
+  // }
+
   const getNativeMax = () => {
     if (!balance) return
-    return gasFee.denom === token
-      ? (Number(balance) - Number(gasFee.amount)).toFixed(0)
-      : balance
+    const gasAmount = gasFee.denom === token ? gasFee.amount : "0"
+    return calcMax({ balance, taxRate, taxCap, gasAmount, shouldTax }).max
   }
 
   const max = !gasFee.amount
@@ -554,6 +560,39 @@ export const getInitialGasDenom = (bankBalance: CoinBalance[]) => {
 }
 
 /* utils */
+interface Params {
+  balance: Amount
+  taxRate: string
+  taxCap: Amount
+  gasAmount: Amount
+  shouldTax?: boolean | false
+}
+
+// Receive tax and gas information and return the maximum payment amount
+export const calcMax = ({
+  balance,
+  taxRate,
+  taxCap,
+  gasAmount,
+  shouldTax,
+}: Params) => {
+  const available = new BigNumber(balance).minus(gasAmount)
+
+  const tax = calcMinimumTaxAmount(available, {
+    rate: new BigNumber(taxRate).div(new BigNumber(1).plus(taxRate)),
+    cap: taxCap,
+  })
+
+  const max = BigNumber.max(
+    new BigNumber(available).minus(shouldTax ? tax : 0),
+    0
+  )
+    .integerValue(BigNumber.ROUND_FLOOR)
+    .toString()
+
+  return { max, tax }
+}
+
 export const calcMinimumTaxAmount = (
   amount: BigNumber.Value,
   { rate, cap }: { rate: BigNumber.Value; cap: BigNumber.Value }
