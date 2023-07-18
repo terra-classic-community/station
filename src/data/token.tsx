@@ -178,10 +178,10 @@ export const useNativeDenoms = () => {
         name: fixedDenom,
         icon:
           tokenType === "ibc"
-            ? "https://assets.terrarebels.net/icon/svg/IBC.svg"
+            ? "https://assets.terraclassic.community/icon/svg/IBC.svg"
             : tokenType === "factory" || tokenType === "gamm"
             ? factoryIcon
-            : "https://assets.terrarebels.net/icon/svg/Terra.svg",
+            : "https://assets.terraclassic.community/icon/svg/Terra.svg",
         decimals,
         isNonWhitelisted: true,
       }

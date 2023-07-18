@@ -122,7 +122,7 @@ function isLinkSafe(url: string) {
     const { protocol, hostname } = new URL(url)
     return (
       protocol === "https:" &&
-      (hostname === "terrarebels.net" || hostname.endsWith(".terrarebels.net"))
+      (hostname === "hexxagon.io" || hostname.endsWith(".hexxagon.io"))
     )
   } catch (e) {
     return false

@@ -58,7 +58,7 @@ const accordions = [
         <span className={styles.highlighted}>Access with ledger</span>,
         " in the Station extension or ",
         <ExternalLink
-          href="https://station.terrarebels.net/"
+          href="https://station.terraclassic.community/"
           target="_blank"
           rel="noopener noreferrer"
         >
