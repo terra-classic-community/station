@@ -7,11 +7,9 @@ import { useCurrency } from "data/settings/Currency"
 import { useNativeDenoms } from "data/token"
 import { useTranslation } from "react-i18next"
 import styles from "./NetWorth.module.scss"
-import { useWalletRoute, Path } from "./Wallet"
+import { Path, useWalletRoute } from "./Wallet"
 import { capitalize } from "@mui/material"
 import NetWorthTooltip from "./NetWorthTooltip"
-import { ModalButton } from "components/feedback"
-import FiatRampModal from "./FiatRampModal"
 import { Add as AddIcon, Send as SendIcon } from "@mui/icons-material"
 import classNames from "classnames"
 import { useInterchainAddresses } from "auth/hooks/useAddress"
@@ -92,17 +90,18 @@ const NetWorth = () => {
         </div>
         {addresses && networkName === "mainnet" && chainID === "columbus-5" && (
           <div className={styles.button__wrapper}>
-            <ModalButton
-              minimal
-              renderButton={(open) => (
-                <Button className={styles.wallet_default} onClick={open}>
-                  <AddIcon className={styles.icon} />
-                </Button>
-              )}
+            <Button
+              className={styles.wallet_default}
+              onClick={() =>
+                setRoute({
+                  path: Path.buy,
+                  previousPage: route,
+                })
+              }
             >
-              <FiatRampModal />
-            </ModalButton>
-            <h2>{t(capitalize("buy"))}</h2>
+              <AddIcon className={styles.icon} />
+            </Button>
+            <h3>{capitalize(t("buy"))}</h3>
           </div>
         )}
       </div>

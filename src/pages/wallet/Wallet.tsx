@@ -11,12 +11,14 @@ import ReceivePage from "./ReceivePage"
 import SendPage from "./SendPage"
 import { atom, useRecoilState } from "recoil"
 import { useEffect } from "react"
+import FiatRamp from "./FiatRamp"
 
 enum Path {
   wallet = "wallet",
   coin = "coin",
   receive = "receive",
   send = "send",
+  buy = "buy",
 }
 
 type Route =
@@ -34,6 +36,11 @@ type Route =
     }
   | {
       path: Path.send
+      denom?: string
+      previousPage: Route
+    }
+  | {
+      path: Path.buy
       denom?: string
       previousPage: Route
     }
@@ -107,6 +114,13 @@ const Wallet = () => {
           <>
             <BackButton />
             <SendPage />
+          </>
+        )
+      case Path.buy:
+        return (
+          <>
+            <BackButton />
+            <FiatRamp />
           </>
         )
     }

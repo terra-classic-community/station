@@ -1,13 +1,22 @@
-import { FIAT_RAMP, GUARDARIAN_API_KEY } from "config/constants"
 import { useState } from "react"
-import { LoadingCircular } from "components/feedback"
-import styles from "./FiatRampModal.module.scss"
-import qs from "qs"
-import { useInterchainAddresses } from "auth/hooks/useAddress"
 
-const FiatRampModal = () => {
+/* helpers */
+
+/* components */
+import { useInterchainAddresses } from "../../auth/hooks/useAddress"
+import { FIAT_RAMP, GUARDARIAN_API_KEY } from "../../config/constants"
+import qs from "qs"
+import styles from "./FiatRamp.module.scss"
+import { LoadingCircular } from "../../components/feedback"
+import { capitalize } from "@mui/material"
+import { useTranslation } from "react-i18next"
+import { useTheme } from "../../data/settings/Theme"
+
+const FiatRamp = () => {
+  const { t } = useTranslation()
   const addresses = useInterchainAddresses()
   const [isLoading, setIsLoading] = useState(true)
+  const { name: theme } = useTheme()
 
   if (!addresses || !GUARDARIAN_API_KEY) return null
 
@@ -23,7 +32,7 @@ const FiatRampModal = () => {
         network: "LUNC",
       },
     ]),
-    theme: "light",
+    theme: theme,
     type: "narrow",
   }
 
@@ -31,7 +40,8 @@ const FiatRampModal = () => {
 
   const src = `${FIAT_RAMP}?${guardarianUrlParams}`
   return (
-    <div className={styles.container}>
+    <section className={styles.buy}>
+      <h1>{capitalize(t("buy"))}</h1>
       {isLoading && (
         <div className={styles.loading}>
           <LoadingCircular size={36} thickness={2} />
@@ -43,8 +53,8 @@ const FiatRampModal = () => {
         title="Guardarian"
         onLoad={() => setIsLoading(false)}
       />
-    </div>
+    </section>
   )
 }
 
-export default FiatRampModal
+export default FiatRamp
