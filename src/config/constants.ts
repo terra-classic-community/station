@@ -30,7 +30,7 @@ export const STAKE_ID = "https://stake.id/#/validator/"
 
 /* website: fiat ramp */
 export const FIAT_RAMP = "https://guardarian.com/calculator/v1/"
-export const GUARDARIAN_API_KEY = process.env.GUARDARIAN_API_KEY
+export const GUARDARIAN_API_KEY = "f109e5cd-7bdb-4563-9551-edd2cbba4a23"
 
 /* ledger */
 export const LEDGER_TRANSPORT_TIMEOUT = 180000
