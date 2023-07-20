@@ -16,6 +16,7 @@ const FiatRampModal = () => {
     default_side: "buy_crypto",
     side_toggle_disabled: "true",
     payout_address: addresses["columbus-5"],
+    default_fiat_currency: "USD",
     crypto_currencies_list: JSON.stringify([
       {
         ticker: "LUNC",
