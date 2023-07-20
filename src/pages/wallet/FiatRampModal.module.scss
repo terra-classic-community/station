@@ -1,9 +1,10 @@
 @import "src/styles/mixins";
 
 .container {
+  background: white;
   position: relative;
   @include flex;
-  height: 700px;
+  height: 311px;
   width: 450px;
 }
 

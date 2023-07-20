@@ -10,13 +10,13 @@ import styles from "./NetWorth.module.scss"
 import { useWalletRoute, Path } from "./Wallet"
 import { capitalize } from "@mui/material"
 import NetWorthTooltip from "./NetWorthTooltip"
-// import { ModalButton } from "components/feedback"
-// import FiatRampModal from "./FiatRampModal"
-// import { Add as AddIcon, Send as SendIcon } from "@mui/icons-material"
+import { ModalButton } from "components/feedback"
+import FiatRampModal from "./FiatRampModal"
+import { Add as AddIcon, Send as SendIcon } from "@mui/icons-material"
 import classNames from "classnames"
-// import { useInterchainAddresses } from "auth/hooks/useAddress"
-// import { useNetworkName } from "data/wallet"
-import { ReactComponent as SendIcon } from "styles/images/icons/Send_v2.svg"
+import { useInterchainAddresses } from "auth/hooks/useAddress"
+import { useChainID, useNetworkName } from "data/wallet"
+// import { ReactComponent as SendIcon } from "styles/images/icons/Send_v2.svg"
 import { ReactComponent as ReceiveIcon } from "styles/images/icons/Receive_v2.svg"
 // import { ReactComponent as AddIcon } from "styles/images/icons/Buy_v2.svg"
 
@@ -29,8 +29,9 @@ const NetWorth = () => {
   const { data: prices } = useExchangeRates()
   const readNativeDenom = useNativeDenoms()
   const { setRoute, route } = useWalletRoute()
-  // const addresses = useInterchainAddresses()
-  // const networkName = useNetworkName()
+  const addresses = useInterchainAddresses()
+  const networkName = useNetworkName()
+  const chainID = useChainID()
 
   // TODO: show CW20 balances and staked tokens
   const coinsValue = coins?.reduce((acc, { amount, denom }) => {
@@ -89,21 +90,21 @@ const NetWorth = () => {
           </Button>
           <h3>{capitalize(t("receive"))}</h3>
         </div>
-        {/*{addresses && networkName === "mainnet" && (*/}
-        {/*  <div className={styles.button__wrapper}>*/}
-        {/*    <ModalButton*/}
-        {/*      minimal*/}
-        {/*      renderButton={(open) => (*/}
-        {/*        <Button className={styles.wallet_default} onClick={open}>*/}
-        {/*          <AddIcon className={styles.icon} />*/}
-        {/*        </Button>*/}
-        {/*      )}*/}
-        {/*    >*/}
-        {/*      <FiatRampModal />*/}
-        {/*    </ModalButton>*/}
-        {/*    <h2>{t(capitalize("buy"))}</h2>*/}
-        {/*  </div>*/}
-        {/*)}*/}
+        {addresses && networkName === "mainnet" && chainID === "columbus-5" && (
+          <div className={styles.button__wrapper}>
+            <ModalButton
+              minimal
+              renderButton={(open) => (
+                <Button className={styles.wallet_default} onClick={open}>
+                  <AddIcon className={styles.icon} />
+                </Button>
+              )}
+            >
+              <FiatRampModal />
+            </ModalButton>
+            <h2>{t(capitalize("buy"))}</h2>
+          </div>
+        )}
       </div>
     </article>
   )

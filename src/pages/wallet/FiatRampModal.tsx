@@ -1,39 +1,34 @@
-import { FIAT_RAMP, KADO_API_KEY } from "config/constants"
-import { useNetwork } from "data/wallet"
+import { FIAT_RAMP, GUARDARIAN_API_KEY } from "config/constants"
 import { useState } from "react"
 import { LoadingCircular } from "components/feedback"
 import styles from "./FiatRampModal.module.scss"
-import { useTheme } from "data/settings/Theme"
 import qs from "qs"
 import { useInterchainAddresses } from "auth/hooks/useAddress"
 
 const FiatRampModal = () => {
   const addresses = useInterchainAddresses()
-  const network = useNetwork()
   const [isLoading, setIsLoading] = useState(true)
-  const { name: theme } = useTheme()
 
-  if (!addresses) return null
+  if (!addresses || !GUARDARIAN_API_KEY) return null
 
-  const onToAddressMulti = Object.keys(addresses)
-    .map((key) => `${network[key]?.name}:${addresses[key]}`)
-    .join(",")
-
-  const rampParams = {
-    network: "Terra",
-    apiKey: KADO_API_KEY,
-    product: "BUY",
-    onRevCurrency: "USDC",
-    networkList: ["TERRA", "OSMOSIS", "KUJIRA", "JUNO"].join(","),
-    productList: ["BUY", "SELL"].join(","),
-    theme,
-    onToAddressMulti,
-    cryptoList: ["USDC", "OSMO"].join(","),
+  const guardarianRampParams = {
+    partner_api_token: GUARDARIAN_API_KEY,
+    default_side: "buy_crypto",
+    side_toggle_disabled: "true",
+    payout_address: addresses["columbus-5"],
+    crypto_currencies_list: JSON.stringify([
+      {
+        ticker: "LUNC",
+        network: "LUNC",
+      },
+    ]),
+    theme: "light",
+    type: "narrow",
   }
 
-  const kadoUrlParams = qs.stringify(rampParams)
+  const guardarianUrlParams = qs.stringify(guardarianRampParams)
 
-  const src = `${FIAT_RAMP}?${kadoUrlParams}`
+  const src = `${FIAT_RAMP}?${guardarianUrlParams}`
   return (
     <div className={styles.container}>
       {isLoading && (
@@ -44,7 +39,7 @@ const FiatRampModal = () => {
       <iframe
         className={styles.iframe}
         src={src}
-        title="Kado"
+        title="Guardarian"
         onLoad={() => setIsLoading(false)}
       />
     </div>
