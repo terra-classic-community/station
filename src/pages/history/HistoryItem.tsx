@@ -83,10 +83,12 @@ const HistoryItem = ({
           txhash,
           timestamp,
           ...props,
-        } as any)?.map(
-          (msg, index) =>
-            msg && <HistoryMessage msg={msg} success={success} key={index} />
-        )}
+        } as any)
+          ?.slice(0, 3)
+          .map(
+            (msg, index) =>
+              msg && <HistoryMessage msg={msg} success={success} key={index} />
+          )}
       </div>
 
       {
